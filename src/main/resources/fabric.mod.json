@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "dftools",
+  "version": "${version}",
+  "name": "DFTools",
+  "description": "A port of DFTools for Fabric",
+  "authors": [
+    "K_Sasha",
+    "Timeraa",
+    "joaoh1"
+  ],
+  "contact": {
+    "homepage": "https://www.mcdiamondfire.com/",
+    "sources": "https://github.com/MCDiamondFire/dftools"
+  },
+
+  "license": "Apache 2.0",
+  "icon": "assets/dftools/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.mcdiamondfire.dftools.DFTools"
+    ]
+  },
+  "mixins": [
+    "dftools.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.4.0",
+    "fabric": "*"
+  },
+
+  "custom": {
+    "modmenu:api": false,
+    "modmenu:clientsideOnly": true
+  }
+}
