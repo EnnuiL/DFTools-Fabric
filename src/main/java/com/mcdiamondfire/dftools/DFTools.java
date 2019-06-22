@@ -17,9 +17,8 @@ public class DFTools implements ClientModInitializer {
 		CommandRegistry.INSTANCE.register(false, ItemDataCommand::register);
 		CommandRegistry.INSTANCE.register(false, RenameCommand::register);
 	}
-
+	
 	public static void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher) {
-        ClientCommandManager.clearClientSideCommands();
 		CanDestroyCommand.register(dispatcher);
 		CanPlaceCommand.register(dispatcher);
 		DFToolsHelpCommand.register(dispatcher);

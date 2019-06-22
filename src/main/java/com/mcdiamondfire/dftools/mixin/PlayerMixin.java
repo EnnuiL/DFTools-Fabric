@@ -20,21 +20,23 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class PlayerMixin {
     @Shadow @Final protected MinecraftClient client;
 
-    @Shadow public abstract void addChatMessage(Component text_1, boolean boolean_1);
+    @Shadow public abstract void addChatMessage(Component component_1, boolean boolean_1);
 
     @Inject(method = "sendChatMessage", at = @At("HEAD"), cancellable = true)
     private void onChatMessage(String msg, CallbackInfo info) {
         if (msg.length() < 2 || !msg.startsWith("/")) return;
         boolean cancel = false;
         StringReader reader = new StringReader(msg);
+        reader.skip();
         int cursor = reader.getCursor();
         String commandName = reader.canRead() ? reader.readUnquotedString() : "";
         reader.setCursor(cursor);
-        if (ClientCommandManager.isClientSideCommand(commandName)) {
+        if (ClientCommandManager.isClientSideCommand(commandName) == true) {
             try {
                 // The game freezes when using heavy commands. Run your heavy code somewhere else pls
                 int result = ClientCommandManager.executeCommand(reader, msg);
-                if (result != 1)
+                System.out.println(msg);
+                if (result == 1)
                     // Prevent sending the message
                     cancel = true;
             } catch (CommandException e) {
@@ -46,7 +48,8 @@ public abstract class PlayerMixin {
             }
         }
         
-        if (cancel)
+        if (cancel) {
             info.cancel();
+        }
     }
 }
