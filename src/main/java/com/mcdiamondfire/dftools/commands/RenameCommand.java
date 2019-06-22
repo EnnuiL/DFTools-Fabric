@@ -64,7 +64,6 @@ public class RenameCommand {
         itemStack.setCustomName(new TextComponent(name.getFormattedText().replaceAll("&([0-9a-z]+)", "§$1")));
         //Sends updated item to the server.
         minecraft.player.setStackInHand(Hand.MAIN_HAND, itemStack);
-        minecraft.player.swingHand(Hand.MAIN_HAND);
         return 1;
     }
 
@@ -98,7 +97,6 @@ public class RenameCommand {
         
         //Sends updated item to the server.
         minecraft.player.setStackInHand(Hand.MAIN_HAND, itemStack);
-        minecraft.player.swingHand(Hand.MAIN_HAND);
 		
         MessageUtils.actionMessage("Cleared the custom name.");
         return 1;

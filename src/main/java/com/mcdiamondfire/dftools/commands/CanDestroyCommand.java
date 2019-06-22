@@ -95,7 +95,6 @@ public class CanDestroyCommand {
         itemStack.getTag().getList("CanDestroy", 8).add(new StringTag(Registry.BLOCK.getId(tag.getBlockState().getBlock()).toString()));
         //Sends updated item to the server.
         minecraft.player.setStackInHand(Hand.MAIN_HAND, itemStack);
-        minecraft.player.swingHand(Hand.MAIN_HAND);
 		
         MessageUtils.actionMessage("Added CanDestroy tag.");
         return 1;
@@ -139,7 +138,6 @@ public class CanDestroyCommand {
                     itemStack.getTag().remove("CanDestroy");
                 }
                 minecraft.player.setStackInHand(Hand.MAIN_HAND, itemStack);
-                minecraft.player.swingHand(Hand.MAIN_HAND);
                 
 				MessageUtils.actionMessage("Removed CanDestroy tag.");
 				return 1;
@@ -179,7 +177,6 @@ public class CanDestroyCommand {
 		
         //Sends updated item to the server.
         minecraft.player.setStackInHand(Hand.MAIN_HAND, itemStack);
-        minecraft.player.swingHand(Hand.MAIN_HAND);
 		
         MessageUtils.actionMessage("Cleared all CanDestroy tags.");
         return 1;

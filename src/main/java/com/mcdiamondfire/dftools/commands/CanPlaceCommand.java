@@ -95,7 +95,6 @@ public class CanPlaceCommand {
         itemStack.getTag().getList("CanPlaceOn", 8).add(new StringTag(Registry.BLOCK.getId(tag.getBlockState().getBlock()).toString()));
         //Sends updated item to the server.
         minecraft.player.setStackInHand(Hand.MAIN_HAND, itemStack);
-        minecraft.player.swingHand(Hand.MAIN_HAND);
 		
         MessageUtils.actionMessage("Added CanPlaceOn tag.");
         return 1;
@@ -140,7 +139,6 @@ public class CanPlaceCommand {
                     itemStack.getTag().remove("CanPlaceOn");
                 }
                 minecraft.player.setStackInHand(Hand.MAIN_HAND, itemStack);
-                minecraft.player.swingHand(Hand.MAIN_HAND);
                 
 				MessageUtils.actionMessage("Removed CanPlaceOn tag.");
 				return 1;
@@ -180,7 +178,6 @@ public class CanPlaceCommand {
         
         //Sends updated item to the server.
         minecraft.player.setStackInHand(Hand.MAIN_HAND, itemStack);
-        minecraft.player.swingHand(Hand.MAIN_HAND);
 		
         MessageUtils.actionMessage("Cleared all CanPlaceOn tags.");
         return 1;
