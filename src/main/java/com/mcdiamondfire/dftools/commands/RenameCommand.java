@@ -1,6 +1,5 @@
 package com.mcdiamondfire.dftools.commands;
 
-import com.mcdiamondfire.dftools.commands.ClientCommandManager;
 import com.mcdiamondfire.dftools.MessageUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -21,8 +20,6 @@ public class RenameCommand {
     private static final MinecraftClient minecraft = MinecraftClient.getInstance();
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-        ClientCommandManager.addClientSideCommand("rename");
-
         dispatcher.register(literal("rename")
                 .then(argument("name", MessageArgumentType.create()).executes(ctx -> runRename("rename", ctx)))
                 .executes(ctx -> runRename("clear", ctx)));

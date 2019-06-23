@@ -1,22 +1,17 @@
 package com.mcdiamondfire.dftools.commands;
 
-import com.mcdiamondfire.dftools.commands.ClientCommandManager;
 import com.mcdiamondfire.dftools.MessageUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.server.command.ServerCommandSource;
-
-import static net.minecraft.server.command.CommandManager.*;
+import io.github.cottonmc.clientcommands.*;
 
 public class DFToolsHelpCommand {
     private static final MinecraftClient minecraft = MinecraftClient.getInstance();
 
-    public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-        ClientCommandManager.addClientSideCommand("dftools");
-
-        dispatcher.register(literal("dftools")
-            .then(literal("commands")
+    public static void register(CommandDispatcher<CottonClientCommandSource> dispatcher) {
+        dispatcher.register(ArgumentBuilders.literal("dftools")
+            .then(ArgumentBuilders.literal("commands")
                 .executes(ctx -> {
                     showCommandHelp();
                     return 1;

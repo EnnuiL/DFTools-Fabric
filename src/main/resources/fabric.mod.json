@@ -19,15 +19,13 @@
 
   "environment": "*",
   "entrypoints": {
+    "cotton-client-commands": ["com.mcdiamondfire.dftools.commands.DFToolsCommands"],
     "client": [
       "com.mcdiamondfire.dftools.DFTools"
     ]
   },
-  "mixins": [
-    "dftools.mixins.json"
-  ],
-
   "depends": {
+    "cotton-client-commands": ">=0.4.1",
     "fabricloader": ">=0.4.0",
     "fabric": "*"
   },

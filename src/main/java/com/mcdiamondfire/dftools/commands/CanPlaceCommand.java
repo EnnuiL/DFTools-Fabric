@@ -1,6 +1,5 @@
 package com.mcdiamondfire.dftools.commands;
 
-import com.mcdiamondfire.dftools.commands.ClientCommandManager;
 import com.mcdiamondfire.dftools.MessageUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -12,46 +11,42 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.registry.Registry;
-
-import static net.minecraft.server.command.CommandManager.*;
+import io.github.cottonmc.clientcommands.*;
 
 public class CanPlaceCommand {
     private static final MinecraftClient minecraft = MinecraftClient.getInstance();
 
-    public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-        ClientCommandManager.addClientSideCommand("canplace");
-
-        dispatcher.register(literal("canplace")
-            .then(literal("add")
-                .then(argument("id", BlockStateArgumentType.create())
+    public static void register(CommandDispatcher<CottonClientCommandSource> dispatcher) {
+        dispatcher.register(ArgumentBuilders.literal("canplace")
+            .then(ArgumentBuilders.literal("add")
+                .then(ArgumentBuilders.argument("id", BlockStateArgumentType.create())
                     .executes(ctx -> runCanPlace("add", ctx)))
                 .executes(ctx -> {
                     MessageUtils.errorMessage("Invalid block name.");
-                     return 0;
+                     return 1;
                 })
             )
-            .then(literal("remove")
-                .then(argument("id", BlockStateArgumentType.create())
+            .then(ArgumentBuilders.literal("remove")
+                .then(ArgumentBuilders.argument("id", BlockStateArgumentType.create())
                     .executes(ctx -> runCanPlace("remove", ctx)))
                 .executes(ctx -> {
                     MessageUtils.errorMessage("Invalid block name.");
-                     return 0;
+                     return 1;
                 })
             )
-            .then(literal("clear")
+            .then(ArgumentBuilders.literal("clear")
                 .executes(ctx -> runCanPlace("clear", ctx))
             )
             .executes(ctx -> {
                 MessageUtils.errorMessage("Invalid mode.");
-                return 0;
+                return 1;
             })
         );
     }
     
-    private static int runCanPlace(String string, CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+    private static int runCanPlace(String string, CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
         if (!minecraft.player.isCreative()) {
 			MessageUtils.errorMessage("You need to be in build mode or dev mode to do this!");
 			return 0;
@@ -72,7 +67,7 @@ public class CanPlaceCommand {
         return 0;
     }
 
-    private static int addCanPlace(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+    private static int addCanPlace(CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
         ItemStack itemStack = minecraft.player.getMainHandStack();
 
         //Checks if item stack is not air.
@@ -91,7 +86,7 @@ public class CanPlaceCommand {
             itemStack.getTag().put("CanPlaceOn", new ListTag());
 		}
         
-        BlockStateArgument tag = BlockStateArgumentType.getBlockState(context, "id");
+        BlockStateArgument tag = context.getArgument("id", BlockStateArgument.class);
         itemStack.getTag().getList("CanPlaceOn", 8).add(new StringTag(Registry.BLOCK.getId(tag.getBlockState().getBlock()).toString()));
         //Sends updated item to the server.
         minecraft.player.setStackInHand(Hand.MAIN_HAND, itemStack);
@@ -100,7 +95,7 @@ public class CanPlaceCommand {
         return 1;
     }
 
-    private static int removeCanPlace(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+    private static int removeCanPlace(CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
         ItemStack itemStack = minecraft.player.getMainHandStack();
 
         //Checks if item stack is not air.
@@ -127,7 +122,7 @@ public class CanPlaceCommand {
 		}
         
         ListTag listTag = itemStack.getTag().getList("CanPlaceOn", 8);
-        BlockStateArgument tag = BlockStateArgumentType.getBlockState(context, "id");
+        BlockStateArgument tag = context.getArgument("id", BlockStateArgument.class);
         for (int i = 0; i < listTag.size(); i++) {
             System.out.println(listTag.get(i).toString());
             System.out.println(tag.toString());
@@ -148,7 +143,7 @@ public class CanPlaceCommand {
         MessageUtils.errorMessage("Could not find specified CanPlaceOn tag.");
         return 0;
     }
-    private static int clearCanPlace(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+    private static int clearCanPlace(CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
         ItemStack itemStack = minecraft.player.getMainHandStack();
 
         //Checks if item stack is not air.
