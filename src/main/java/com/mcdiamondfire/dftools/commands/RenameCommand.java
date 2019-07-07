@@ -8,8 +8,8 @@ import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.command.arguments.MessageArgumentType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.text.Text;
+import net.minecraft.text.LiteralText;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.util.Hand;
@@ -21,7 +21,7 @@ public class RenameCommand {
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(literal("rename")
-                .then(argument("name", MessageArgumentType.create()).executes(ctx -> runRename("rename", ctx)))
+                .then(argument("name", MessageArgumentType.message()).executes(ctx -> runRename("rename", ctx)))
                 .executes(ctx -> runRename("clear", ctx)));
     }
 
@@ -57,8 +57,8 @@ public class RenameCommand {
             itemStack.setTag(new CompoundTag());
         }
 
-        Component name = MessageArgumentType.getMessage(context, "name");
-        itemStack.setCustomName(new TextComponent(name.getFormattedText().replaceAll("&([0-9a-z]+)", "§$1")));
+        Text name = MessageArgumentType.getMessage(context, "name");
+        itemStack.setCustomName(new LiteralText(name.asFormattedString().replaceAll("&([0-9a-z]+)", "§$1")));
         //Sends updated item to the server.
         minecraft.player.setStackInHand(Hand.MAIN_HAND, itemStack);
         return 1;

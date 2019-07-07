@@ -3,7 +3,7 @@ package com.mcdiamondfire.dftools.commands;
 import com.mcdiamondfire.dftools.MessageUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.text.LiteralText;
 import io.github.cottonmc.clientcommands.*;
 
 public class DFToolsHelpCommand {
@@ -40,7 +40,7 @@ public class DFToolsHelpCommand {
 		};
 		
 		for (String messageLine : helpMessage) {
-			minecraft.player.sendMessage(new TextComponent(messageLine));
+			minecraft.player.sendMessage(new LiteralText(messageLine));
 		}
 	}
 }

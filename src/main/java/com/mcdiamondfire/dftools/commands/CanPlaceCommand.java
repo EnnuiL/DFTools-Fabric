@@ -21,7 +21,7 @@ public class CanPlaceCommand {
     public static void register(CommandDispatcher<CottonClientCommandSource> dispatcher) {
         dispatcher.register(ArgumentBuilders.literal("canplace")
             .then(ArgumentBuilders.literal("add")
-                .then(ArgumentBuilders.argument("id", BlockStateArgumentType.create())
+                .then(ArgumentBuilders.argument("id", BlockStateArgumentType.blockState())
                     .executes(ctx -> runCanPlace("add", ctx)))
                 .executes(ctx -> {
                     MessageUtils.errorMessage("Invalid block name.");
@@ -29,7 +29,7 @@ public class CanPlaceCommand {
                 })
             )
             .then(ArgumentBuilders.literal("remove")
-                .then(ArgumentBuilders.argument("id", BlockStateArgumentType.create())
+                .then(ArgumentBuilders.argument("id", BlockStateArgumentType.blockState())
                     .executes(ctx -> runCanPlace("remove", ctx)))
                 .executes(ctx -> {
                     MessageUtils.errorMessage("Invalid block name.");

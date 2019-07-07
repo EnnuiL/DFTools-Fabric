@@ -7,12 +7,12 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.chat.ClickEvent;
-import net.minecraft.network.chat.HoverEvent;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.Style;
-import net.minecraft.ChatFormat;
-import net.minecraft.network.chat.Component;
+import net.minecraft.text.ClickEvent;
+import net.minecraft.text.HoverEvent;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Style;
+import net.minecraft.util.Formatting;
+import net.minecraft.text.Text;
 import io.github.cottonmc.clientcommands.*;
 
 public class ItemDataCommand {
@@ -49,15 +49,15 @@ public class ItemDataCommand {
         //Creates the click and hover events for the message.
 		Style messageStyle = new Style();
 		messageStyle.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, itemTag));
-		messageStyle.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent("Click here to write the\nNBT to your chat bar.").applyFormat(ChatFormat.BLUE)));
+		messageStyle.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new LiteralText("Click here to write the\nNBT to your chat bar.").formatted(Formatting.BLUE)));
 		
 		//Creates the actual message text component.
-		Component messageComponent = new TextComponent(itemTag).applyFormat(ChatFormat.BLUE);
-		messageComponent.setStyle(messageStyle);
+		Text messageText = new LiteralText(itemTag).formatted(Formatting.BLUE);
+		messageText.setStyle(messageStyle);
 		
 		//Sends the message.
 		MessageUtils.infoMessage("Item NBT:");
-		minecraft.player.sendMessage(messageComponent);
+		minecraft.player.sendMessage(messageText);
         return 1;
     }
 }

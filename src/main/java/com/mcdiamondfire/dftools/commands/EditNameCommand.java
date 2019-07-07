@@ -7,12 +7,12 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.chat.ClickEvent;
-import net.minecraft.network.chat.HoverEvent;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.Style;
-import net.minecraft.ChatFormat;
-import net.minecraft.network.chat.Component;
+import net.minecraft.text.ClickEvent;
+import net.minecraft.text.HoverEvent;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Style;
+import net.minecraft.util.Formatting;
+import net.minecraft.text.Text;
 import io.github.cottonmc.clientcommands.*;
 
 public class EditNameCommand {
@@ -38,19 +38,19 @@ public class EditNameCommand {
             return 1;
 		}
         
-        String itemName = itemStack.getCustomName().getFormattedText().replaceAll("§", "&");
+        String itemName = itemStack.getName().asFormattedString().replaceAll("§", "&");
 
         //Creates the click and hover events for the message.
 		Style messageStyle = new Style();
 		messageStyle.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/rename " + itemName));
-		messageStyle.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent(itemName).applyFormat(ChatFormat.BLUE)));
+		messageStyle.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new LiteralText(itemName).formatted(Formatting.BLUE)));
 		
 		//Creates the actual message text component.
-		Component messageComponent = new TextComponent("§b❱§3❱ §bClick here to write the rename command to your chat bar.");
-		messageComponent.setStyle(messageStyle);
+		Text messageText = new LiteralText("§b❱§3❱ §bClick here to write the rename command to your chat bar.");
+		messageText.setStyle(messageStyle);
 		
 		//Sends the message.
-		minecraft.player.sendMessage(messageComponent);
+		minecraft.player.sendMessage(messageText);
         return 1;
     }
 }

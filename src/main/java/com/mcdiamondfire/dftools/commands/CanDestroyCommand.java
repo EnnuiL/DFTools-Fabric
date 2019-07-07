@@ -1,6 +1,7 @@
 package com.mcdiamondfire.dftools.commands;
 
 import com.mcdiamondfire.dftools.MessageUtils;
+import com.mcdiamondfire.dftools.ItemUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.context.CommandContext;
@@ -21,7 +22,7 @@ public class CanDestroyCommand {
     public static void register(CommandDispatcher<CottonClientCommandSource> dispatcher) {
         dispatcher.register(ArgumentBuilders.literal("candestroy")
             .then(ArgumentBuilders.literal("add")
-                .then(ArgumentBuilders.argument("id", BlockStateArgumentType.create())
+                .then(ArgumentBuilders.argument("id", BlockStateArgumentType.blockState())
                     .executes(ctx -> runCanDestroy("add", ctx)))
                 .executes(ctx -> {
                     MessageUtils.errorMessage("Invalid block name.");
@@ -29,7 +30,7 @@ public class CanDestroyCommand {
                 })
             )
             .then(ArgumentBuilders.literal("remove")
-                .then(ArgumentBuilders.argument("id", BlockStateArgumentType.create())
+                .then(ArgumentBuilders.argument("id", BlockStateArgumentType.blockState())
                     .executes(ctx -> runCanDestroy("remove", ctx)))
                 .executes(ctx -> {
                     MessageUtils.errorMessage("Invalid block name.");
@@ -89,7 +90,7 @@ public class CanDestroyCommand {
         BlockStateArgument tag = context.getArgument("id", BlockStateArgument.class);
         itemStack.getTag().getList("CanDestroy", 8).add(new StringTag(Registry.BLOCK.getId(tag.getBlockState().getBlock()).toString()));
         //Sends updated item to the server.
-        minecraft.player.setStackInHand(Hand.MAIN_HAND, itemStack);
+        ItemUtils.setItemInHotbar(itemStack, true);
 		
         MessageUtils.actionMessage("Added CanDestroy tag.");
         return 1;
