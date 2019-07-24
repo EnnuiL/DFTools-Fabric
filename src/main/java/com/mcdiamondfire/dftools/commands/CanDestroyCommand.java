@@ -1,7 +1,6 @@
 package com.mcdiamondfire.dftools.commands;
 
 import com.mcdiamondfire.dftools.MessageUtils;
-import com.mcdiamondfire.dftools.ItemUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.context.CommandContext;
@@ -70,7 +69,7 @@ public class CanDestroyCommand {
 
     private static int addCanDestroy(CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
         ItemStack itemStack = minecraft.player.getMainHandStack();
-
+        
         // Checks if item stack is not air.
         if (itemStack.isEmpty()) {
             MessageUtils.errorMessage("Invalid item!");
@@ -90,8 +89,8 @@ public class CanDestroyCommand {
         BlockStateArgument tag = context.getArgument("id", BlockStateArgument.class);
         itemStack.getTag().getList("CanDestroy", 8).add(new StringTag(Registry.BLOCK.getId(tag.getBlockState().getBlock()).toString()));
         //Sends updated item to the server.
-        ItemUtils.setItemInHotbar(itemStack, true);
-		
+        minecraft.player.setStackInHand(Hand.MAIN_HAND, itemStack);
+        
         MessageUtils.actionMessage("Added CanDestroy tag.");
         return 1;
     }

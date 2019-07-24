@@ -30,15 +30,15 @@ public class DFToolsHelpCommand {
 			"§6§m    §6[§eCommands§6]§m    ",
 			"",
 			"  §cNote: §7Check out the command's autocomplete.",
-			"",
-			"§6> §e/candestroy",
+            "",
+            "§6> §e/candestroy",
 			"§6> §e/canplace",
 			"§6> §e/editname",
 			"§6> §e/itemdata §7Displays the NBT for the currently held item.",
             //"§6> §e/rename  §7Similar to the default /rename command.",
 			""
-		};
-		
+        };
+
 		for (String messageLine : helpMessage) {
 			minecraft.player.sendMessage(new LiteralText(messageLine));
 		}
