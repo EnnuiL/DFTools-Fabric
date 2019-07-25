@@ -3,7 +3,7 @@
   "id": "dftools",
   "version": "${version}",
   "name": "DFTools",
-  "description": "A port of DFTools for Fabric",
+  "description": "A port of DFTools for Fabric, currently commands-only.",
   "authors": [
     "K_Sasha",
     "Timeraa",
@@ -11,7 +11,7 @@
   ],
   "contact": {
     "homepage": "https://www.mcdiamondfire.com/",
-    "sources": "https://github.com/MCDiamondFire/dftools"
+    "sources": "https://github.com/joaoh1/DFTools-Fabric"
   },
 
   "license": "Apache 2.0",
