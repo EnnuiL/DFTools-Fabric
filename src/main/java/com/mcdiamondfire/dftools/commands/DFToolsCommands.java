@@ -6,10 +6,13 @@ import io.github.cottonmc.clientcommands.*;
 public class DFToolsCommands implements ClientCommandPlugin {
     @Override
     public void registerCommands(CommandDispatcher<CottonClientCommandSource> dispatcher) {
+        BreakableCommand.register(dispatcher);
         CanDestroyCommand.register(dispatcher);
         CanPlaceCommand.register(dispatcher);
+        CustomModelDataCommand.register(dispatcher);
         DFToolsHelpCommand.register(dispatcher);
         EditNameCommand.register(dispatcher);
         ItemDataCommand.register(dispatcher);
+        RenameCommand.register(dispatcher);
     }
 }

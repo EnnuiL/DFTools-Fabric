@@ -3,8 +3,9 @@ package com.mcdiamondfire.dftools.commands;
 import com.mcdiamondfire.dftools.MessageUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-
 import com.mojang.brigadier.context.CommandContext;
+
+import io.github.cottonmc.clientcommands.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.ClickEvent;
@@ -13,7 +14,6 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Style;
 import net.minecraft.util.Formatting;
 import net.minecraft.text.Text;
-import io.github.cottonmc.clientcommands.*;
 
 public class ItemDataCommand {
     private static final MinecraftClient minecraft = MinecraftClient.getInstance();

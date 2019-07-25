@@ -4,45 +4,45 @@ import com.mcdiamondfire.dftools.MessageUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.context.CommandContext;
-
 import io.github.cottonmc.clientcommands.*;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.command.arguments.MessageArgumentType;
+import net.minecraft.command.arguments.NumberRangeArgumentType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
 import net.minecraft.nbt.CompoundTag;
 
-public class RenameCommand {
+public class CustomModelDataCommand {
     private static final MinecraftClient minecraft = MinecraftClient.getInstance();
 
     public static void register(CommandDispatcher<CottonClientCommandSource> dispatcher) {
-        dispatcher.register(ArgumentBuilders.literal("rename")
-                .then(ArgumentBuilders.argument("name", MessageArgumentType.message())
-                    .executes(ctx -> runRename("rename", ctx)))
-                .executes(ctx -> runRename("clear", ctx))
+        dispatcher.register(ArgumentBuilders.literal("custommodeldata")
+            .then(ArgumentBuilders.argument("id", NumberRangeArgumentType.numberRange())
+                    .executes(ctx -> runCustomModel("set", ctx)))
+            .executes(ctx -> runCustomModel("clear", ctx))
         );
     }
 
-    private static int runRename(String string, CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
+    private static int runCustomModel(String string, CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
         if (!minecraft.player.isCreative()) {
-            MessageUtils.errorMessage("You need to be in build mode or dev mode to do this!");
-            return 0;
+			MessageUtils.errorMessage("You need to be in build mode or dev mode to do this!");
+			return 0;
         }
 
         switch (string) {
-        case "rename":
-            rename(context);
-            return 1;
-        case "clear":
-            clearRename(context);
-            return 1;
+            case "set":
+                setCustomModel(context);
+                 return 1;
+            case "clear":
+                clearCustomModel(context);
+                return 1;
         }
 
         return 0;
     }
 
-    private static int rename(CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
+    private static int setCustomModel(CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
         ItemStack itemStack = minecraft.player.getMainHandStack();
+        
+        Integer id = Integer.parseInt(context.getInput().substring(16));
 
         // Checks if item stack is not air.
         if (itemStack.isEmpty()) {
@@ -54,15 +54,15 @@ public class RenameCommand {
         if (!itemStack.hasTag()) {
             itemStack.setTag(new CompoundTag());
         }
-
-        String name = context.getInput().substring(7);
-        itemStack.setCustomName(new LiteralText(name.replaceAll("&([0-9a-z]+)", "§$1")));
+        
+        itemStack.getTag().putInt("CustomModelData", id);
         //Sends updated item to the server.
         minecraft.interactionManager.clickCreativeStack(itemStack, 36 + minecraft.player.inventory.selectedSlot);
+        
+        MessageUtils.actionMessage("Added CustomModelData tag.");
         return 1;
     }
-
-    private static int clearRename(CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
+    private static int clearCustomModel(CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
         ItemStack itemStack = minecraft.player.getMainHandStack();
 
         //Checks if item stack is not air.
@@ -70,30 +70,30 @@ public class RenameCommand {
 			MessageUtils.errorMessage("Invalid item!");
             return 0;
 		}
-		
+        
 		//Checks if item has an NBT tag.
 		if (!itemStack.hasTag()) {
-            MessageUtils.errorMessage("This item does not contain any tags!");
-            return 0;
-		}
-		
-		//Checks if item has a Display tag.
-		if (!itemStack.getTag().containsKey("display")) {
-            MessageUtils.errorMessage("This item does not contain any custom name!");
+            MessageUtils.errorMessage("This item does not contain any CustomModelData tags!");
             return 0;
 		}
         
-        itemStack.getTag().remove("display");
+		//Checks if item has a CustomModelData tag.
+		if (!itemStack.getTag().containsKey("CustomModelData")) {
+            MessageUtils.errorMessage("This item does not contain any CustomModelData tags!");
+            return 0;
+		}
         
+        itemStack.getTag().remove("CustomModelData");
+
         //Deletes NBT tag if no tags remain.
         if (itemStack.getTag().getSize() == 0) {
             itemStack.setTag(null);
 		}
-        
+		
         //Sends updated item to the server.
         minecraft.interactionManager.clickCreativeStack(itemStack, 36 + minecraft.player.inventory.selectedSlot);
 		
-        MessageUtils.actionMessage("Cleared the custom name.");
+        MessageUtils.actionMessage("Cleared all CustomModelData tags.");
         return 1;
     }
 }
