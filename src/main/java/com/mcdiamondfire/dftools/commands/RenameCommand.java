@@ -2,12 +2,12 @@ package com.mcdiamondfire.dftools.commands;
 
 import com.mcdiamondfire.dftools.MessageUtils;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.context.CommandContext;
 
 import io.github.cottonmc.clientcommands.*;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.command.arguments.MessageArgumentType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.nbt.CompoundTag;
@@ -17,7 +17,7 @@ public class RenameCommand {
 
     public static void register(CommandDispatcher<CottonClientCommandSource> dispatcher) {
         dispatcher.register(ArgumentBuilders.literal("rename")
-                .then(ArgumentBuilders.argument("name", MessageArgumentType.message())
+                .then(ArgumentBuilders.argument("name", StringArgumentType.greedyString())
                     .executes(ctx -> runRename("rename", ctx)))
                 .executes(ctx -> runRename("clear", ctx))
         );
@@ -55,7 +55,7 @@ public class RenameCommand {
             itemStack.setTag(new CompoundTag());
         }
 
-        String name = context.getInput().substring(7);
+        String name = StringArgumentType.getString(context, "name");
         itemStack.setCustomName(new LiteralText(name.replaceAll("&([0-9a-z]+)", "§$1")));
         //Sends updated item to the server.
         minecraft.interactionManager.clickCreativeStack(itemStack, 36 + minecraft.player.inventory.selectedSlot);

@@ -2,11 +2,11 @@ package com.mcdiamondfire.dftools.commands;
 
 import com.mcdiamondfire.dftools.MessageUtils;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.context.CommandContext;
 import io.github.cottonmc.clientcommands.*;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.command.arguments.NumberRangeArgumentType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 
@@ -15,7 +15,7 @@ public class CustomModelDataCommand {
 
     public static void register(CommandDispatcher<CottonClientCommandSource> dispatcher) {
         dispatcher.register(ArgumentBuilders.literal("custommodeldata")
-            .then(ArgumentBuilders.argument("id", NumberRangeArgumentType.numberRange())
+            .then(ArgumentBuilders.argument("id", IntegerArgumentType.integer())
                     .executes(ctx -> runCustomModel("set", ctx)))
             .executes(ctx -> runCustomModel("clear", ctx))
         );
@@ -42,7 +42,7 @@ public class CustomModelDataCommand {
     private static int setCustomModel(CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
         ItemStack itemStack = minecraft.player.getMainHandStack();
         
-        Integer id = Integer.parseInt(context.getInput().substring(16));
+        Integer id = IntegerArgumentType.getInteger(context, "id");
 
         // Checks if item stack is not air.
         if (itemStack.isEmpty()) {
