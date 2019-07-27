@@ -18,7 +18,7 @@ public class ItemUtils {
 			
 			//If an open slot has been found, set it there, otherwise, set it in the player's main hand.
 			if (firstEmptySlot < 9) {
-				minecraft.interactionManager.clickCreativeStack(itemStack, minecraft.player.inventory.getInvSize() - 10 + firstEmptySlot);
+				minecraft.interactionManager.clickCreativeStack(itemStack, 36 + firstEmptySlot);
 				if (selectSlot) {
 					minecraft.player.inventory.selectedSlot = firstEmptySlot;
 					minecraft.player.networkHandler.sendPacket(new HeldItemChangeS2CPacket(firstEmptySlot));
