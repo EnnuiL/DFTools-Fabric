@@ -24,7 +24,7 @@ public class CanDestroyCommand {
                     .executes(ctx -> runCanDestroy("add", ctx)))
                 .executes(ctx -> {
                     MessageUtils.errorMessage("Invalid block name.");
-                     return 1;
+                    return 1;
                 })
             )
             .then(ArgumentBuilders.literal("remove")
@@ -32,7 +32,7 @@ public class CanDestroyCommand {
                     .executes(ctx -> runCanDestroy("remove", ctx)))
                 .executes(ctx -> {
                     MessageUtils.errorMessage("Invalid block name.");
-                     return 1;
+                    return 1;
                 })
             )
             .then(ArgumentBuilders.literal("clear")

@@ -12,7 +12,9 @@ public class DFToolsCommands implements ClientCommandPlugin {
         CustomModelDataCommand.register(dispatcher);
         DFToolsHelpCommand.register(dispatcher);
         EditNameCommand.register(dispatcher);
+        GiveCommand.register(dispatcher);
         ItemDataCommand.register(dispatcher);
         RenameCommand.register(dispatcher);
+        UnbreakableCommand.register(dispatcher);
     }
 }
