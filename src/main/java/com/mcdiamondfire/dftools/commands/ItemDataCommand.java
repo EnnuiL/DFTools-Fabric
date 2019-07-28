@@ -1,6 +1,6 @@
 package com.mcdiamondfire.dftools.commands;
 
-import com.mcdiamondfire.dftools.MessageUtils;
+import com.mcdiamondfire.dftools.utils.MessageUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.context.CommandContext;
@@ -45,7 +45,7 @@ public class ItemDataCommand {
 		}
         
         String itemTag = itemStack.getTag().toString().replaceAll("§", "&");
-
+        
         //Creates the click and hover events for the message.
 		Style messageStyle = new Style();
 		messageStyle.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, itemTag));

@@ -1,6 +1,6 @@
 package com.mcdiamondfire.dftools.commands;
 
-import com.mcdiamondfire.dftools.MessageUtils;
+import com.mcdiamondfire.dftools.utils.MessageUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.context.CommandContext;
@@ -17,7 +17,7 @@ import net.minecraft.text.Text;
 
 public class EditNameCommand {
     private static final MinecraftClient minecraft = MinecraftClient.getInstance();
-
+    
     public static void register(CommandDispatcher<CottonClientCommandSource> dispatcher) {
         dispatcher.register(ArgumentBuilders.literal("editname")
             .executes(ctx -> execute(ctx)));

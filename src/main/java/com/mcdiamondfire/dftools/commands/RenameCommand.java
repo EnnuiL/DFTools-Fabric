@@ -1,6 +1,7 @@
 package com.mcdiamondfire.dftools.commands;
 
-import com.mcdiamondfire.dftools.MessageUtils;
+import com.mcdiamondfire.dftools.utils.ItemUtils;
+import com.mcdiamondfire.dftools.utils.MessageUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -58,7 +59,7 @@ public class RenameCommand {
         String name = StringArgumentType.getString(context, "name");
         itemStack.setCustomName(new LiteralText(name.replaceAll("&([0-9a-z]+)", "§$1")));
         //Sends updated item to the server.
-        minecraft.interactionManager.clickCreativeStack(itemStack, 36 + minecraft.player.inventory.selectedSlot);
+        ItemUtils.setItemInHand(itemStack);
         return 1;
     }
 
@@ -70,7 +71,7 @@ public class RenameCommand {
 			MessageUtils.errorMessage("Invalid item!");
             return 0;
 		}
-		
+        
 		//Checks if item has an NBT tag.
 		if (!itemStack.hasTag()) {
             MessageUtils.errorMessage("This item does not contain any tags!");
@@ -91,7 +92,7 @@ public class RenameCommand {
 		}
         
         //Sends updated item to the server.
-        minecraft.interactionManager.clickCreativeStack(itemStack, 36 + minecraft.player.inventory.selectedSlot);
+        ItemUtils.setItemInHand(itemStack);
 		
         MessageUtils.actionMessage("Cleared the custom name.");
         return 1;

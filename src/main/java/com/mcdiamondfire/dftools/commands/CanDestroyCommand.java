@@ -1,6 +1,7 @@
 package com.mcdiamondfire.dftools.commands;
 
-import com.mcdiamondfire.dftools.MessageUtils;
+import com.mcdiamondfire.dftools.utils.ItemUtils;
+import com.mcdiamondfire.dftools.utils.MessageUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.context.CommandContext;
@@ -16,7 +17,7 @@ import net.minecraft.util.registry.Registry;
 
 public class CanDestroyCommand {
     private static final MinecraftClient minecraft = MinecraftClient.getInstance();
-
+    
     public static void register(CommandDispatcher<CottonClientCommandSource> dispatcher) {
         dispatcher.register(ArgumentBuilders.literal("candestroy")
             .then(ArgumentBuilders.literal("add")
@@ -88,7 +89,7 @@ public class CanDestroyCommand {
         BlockStateArgument tag = context.getArgument("id", BlockStateArgument.class);
         itemStack.getTag().getList("CanDestroy", 8).add(new StringTag(Registry.BLOCK.getId(tag.getBlockState().getBlock()).toString()));
         //Sends updated item to the server.
-        minecraft.interactionManager.clickCreativeStack(itemStack, 36 + minecraft.player.inventory.selectedSlot);
+        ItemUtils.setItemInHand(itemStack);
         
         MessageUtils.actionMessage("Added CanDestroy tag.");
         return 1;
@@ -131,8 +132,9 @@ public class CanDestroyCommand {
                 if (itemStack.getTag().getList("CanDestroy", 8).size() == 0) {
                     itemStack.getTag().remove("CanDestroy");
                 }
+
                 //Sends updated item to the server.
-                minecraft.interactionManager.clickCreativeStack(itemStack, 36 + minecraft.player.inventory.selectedSlot);
+                ItemUtils.setItemInHand(itemStack);
                 
 				MessageUtils.actionMessage("Removed CanDestroy tag.");
 				return 1;
@@ -171,7 +173,7 @@ public class CanDestroyCommand {
 		}
 		
         //Sends updated item to the server.
-        minecraft.interactionManager.clickCreativeStack(itemStack, 36 + minecraft.player.inventory.selectedSlot);
+        ItemUtils.setItemInHand(itemStack);
 		
         MessageUtils.actionMessage("Cleared all CanDestroy tags.");
         return 1;

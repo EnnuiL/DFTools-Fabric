@@ -1,4 +1,4 @@
-package com.mcdiamondfire.dftools;
+package com.mcdiamondfire.dftools.utils;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.packet.HeldItemChangeS2CPacket;
@@ -8,6 +8,11 @@ public class ItemUtils {
 	
 	private static final MinecraftClient minecraft = MinecraftClient.getInstance();
 	
+	public static void setItemInHand(ItemStack itemStack) {
+		//Sets the item in the player's main hand.
+		minecraft.interactionManager.clickCreativeStack(itemStack, 36 + minecraft.player.inventory.selectedSlot);
+	}
+
 	public static void setItemInHotbar(ItemStack itemStack, boolean selectSlot) {
 		//If the players main hand is empty, set the item in the player's main hand.
 		//Otherwise, find the next open slot and set the item in that slot.

@@ -1,6 +1,7 @@
 package com.mcdiamondfire.dftools.commands;
 
-import com.mcdiamondfire.dftools.MessageUtils;
+import com.mcdiamondfire.dftools.utils.ItemUtils;
+import com.mcdiamondfire.dftools.utils.MessageUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.context.CommandContext;
@@ -88,8 +89,8 @@ public class CanPlaceCommand {
         BlockStateArgument tag = context.getArgument("id", BlockStateArgument.class);
         itemStack.getTag().getList("CanPlaceOn", 8).add(new StringTag(Registry.BLOCK.getId(tag.getBlockState().getBlock()).toString()));
         //Sends updated item to the server.
-        minecraft.interactionManager.clickCreativeStack(itemStack, 36 + minecraft.player.inventory.selectedSlot);
-		
+        ItemUtils.setItemInHand(itemStack);
+        
         MessageUtils.actionMessage("Added CanPlaceOn tag.");
         return 1;
     }
@@ -133,7 +134,7 @@ public class CanPlaceCommand {
                     itemStack.getTag().remove("CanPlaceOn");
                 }
                 //Sends updated item to the server.
-                minecraft.interactionManager.clickCreativeStack(itemStack, 36 + minecraft.player.inventory.selectedSlot);
+                ItemUtils.setItemInHand(itemStack);
                 
 				MessageUtils.actionMessage("Removed CanPlaceOn tag.");
 				return 1;
@@ -172,7 +173,7 @@ public class CanPlaceCommand {
 		}
         
         //Sends updated item to the server.
-        minecraft.interactionManager.clickCreativeStack(itemStack, 36 + minecraft.player.inventory.selectedSlot);
+        ItemUtils.setItemInHand(itemStack);
 		
         MessageUtils.actionMessage("Cleared all CanPlaceOn tags.");
         return 1;

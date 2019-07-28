@@ -1,6 +1,7 @@
 package com.mcdiamondfire.dftools.commands;
 
-import com.mcdiamondfire.dftools.MessageUtils;
+import com.mcdiamondfire.dftools.utils.ItemUtils;
+import com.mcdiamondfire.dftools.utils.MessageUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -57,7 +58,7 @@ public class CustomModelDataCommand {
         
         itemStack.getTag().putInt("CustomModelData", id);
         //Sends updated item to the server.
-        minecraft.interactionManager.clickCreativeStack(itemStack, 36 + minecraft.player.inventory.selectedSlot);
+        ItemUtils.setItemInHand(itemStack);
         
         MessageUtils.actionMessage("Added CustomModelData tag.");
         return 1;
@@ -91,7 +92,7 @@ public class CustomModelDataCommand {
 		}
 		
         //Sends updated item to the server.
-        minecraft.interactionManager.clickCreativeStack(itemStack, 36 + minecraft.player.inventory.selectedSlot);
+        ItemUtils.setItemInHand(itemStack);
 		
         MessageUtils.actionMessage("Cleared all CustomModelData tags.");
         return 1;

@@ -1,4 +1,4 @@
-package com.mcdiamondfire.dftools;
+package com.mcdiamondfire.dftools.utils;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.sound.SoundEvents;

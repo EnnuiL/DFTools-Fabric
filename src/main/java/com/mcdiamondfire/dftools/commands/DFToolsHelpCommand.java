@@ -1,6 +1,6 @@
 package com.mcdiamondfire.dftools.commands;
 
-import com.mcdiamondfire.dftools.MessageUtils;
+import com.mcdiamondfire.dftools.utils.MessageUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import io.github.cottonmc.clientcommands.*;
 import net.minecraft.client.MinecraftClient;
@@ -8,7 +8,7 @@ import net.minecraft.text.LiteralText;
 
 public class DFToolsHelpCommand {
     private static final MinecraftClient minecraft = MinecraftClient.getInstance();
-
+    
     public static void register(CommandDispatcher<CottonClientCommandSource> dispatcher) {
         dispatcher.register(ArgumentBuilders.literal("dftools")
             .then(ArgumentBuilders.literal("commands")

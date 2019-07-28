@@ -1,7 +1,7 @@
 package com.mcdiamondfire.dftools.commands;
 
-import com.mcdiamondfire.dftools.MessageUtils;
-import com.mcdiamondfire.dftools.ItemUtils;
+import com.mcdiamondfire.dftools.utils.ItemUtils;
+import com.mcdiamondfire.dftools.utils.MessageUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -42,10 +42,10 @@ public class GiveCommand {
         Integer amount = 1;
         if (useAmount == true) {
             amount = IntegerArgumentType.getInteger(context, "count");
-        } 
+        }
 
         ItemStack itemStack = ItemStackArgumentType.getItemStackArgument(context, "item").createStack(amount, false);
-        
+
         //Checks if player is not in survival mode.
         if (!minecraft.player.isCreative()) {
             MessageUtils.errorMessage("You need to be in build mode or dev mode to do this!");
@@ -57,7 +57,7 @@ public class GiveCommand {
 			MessageUtils.errorMessage("Invalid item!");
             return 1;
 		}
-
+        
         //Sends updated item to the server.
         ItemUtils.setItemInHotbar(itemStack, false);
         return 1;
