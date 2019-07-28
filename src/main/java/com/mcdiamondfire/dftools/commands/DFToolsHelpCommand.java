@@ -8,7 +8,7 @@ import net.minecraft.text.LiteralText;
 
 public class DFToolsHelpCommand {
     private static final MinecraftClient minecraft = MinecraftClient.getInstance();
-    
+
     public static void register(CommandDispatcher<CottonClientCommandSource> dispatcher) {
         dispatcher.register(ArgumentBuilders.literal("dftools")
             .then(ArgumentBuilders.literal("commands")
@@ -34,8 +34,8 @@ public class DFToolsHelpCommand {
             "§6> §e/candestroy",
             "§6> §e/canplace",
             "§6> §e/custommodeldata",
+            "§6> §e/dfgive   §7Similar to the default /give command.",
             "§6> §e/editname",
-            "§6> §e/give    §7Similar to the default /give command.",
 			"§6> §e/itemdata §7Displays the NBT for the currently held item.",
             "§6> §e/rename  §7Similar to the default /rename command.",
             "§6> §e/unbreakable §7Similar to the default /unbreakable command.",

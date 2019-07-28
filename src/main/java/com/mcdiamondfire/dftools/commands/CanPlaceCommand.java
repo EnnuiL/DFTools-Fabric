@@ -49,7 +49,7 @@ public class CanPlaceCommand {
     private static int runCanPlace(String string, CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
         if (!minecraft.player.isCreative()) {
 			MessageUtils.errorMessage("You need to be in build mode or dev mode to do this!");
-			return 0;
+			return 1;
         }
 
         switch (string) {
@@ -64,7 +64,7 @@ public class CanPlaceCommand {
                 return 1;
         }
 
-        return 0;
+        return 1;
     }
 
     private static int addCanPlace(CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
@@ -150,19 +150,19 @@ public class CanPlaceCommand {
         //Checks if item stack is not air.
 		if (itemStack.isEmpty()) {
 			MessageUtils.errorMessage("Invalid item!");
-            return 0;
+            return 1;
 		}
         
 		//Checks if item has an NBT tag.
 		if (!itemStack.hasTag()) {
             MessageUtils.errorMessage("This item does not contain any CanPlaceOn tags!");
-            return 0;
+            return 1;
 		}
 		
 		//Checks if item has a CanPlaceOn tag.
 		if (!itemStack.getTag().containsKey("CanPlaceOn", 9)) {
             MessageUtils.errorMessage("This item does not contain any CanPlaceOn tags!");
-            return 0;
+            return 1;
 		}
         
         itemStack.getTag().remove("CanPlaceOn");

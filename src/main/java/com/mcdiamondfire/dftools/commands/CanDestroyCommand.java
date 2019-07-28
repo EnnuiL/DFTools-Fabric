@@ -17,7 +17,7 @@ import net.minecraft.util.registry.Registry;
 
 public class CanDestroyCommand {
     private static final MinecraftClient minecraft = MinecraftClient.getInstance();
-    
+
     public static void register(CommandDispatcher<CottonClientCommandSource> dispatcher) {
         dispatcher.register(ArgumentBuilders.literal("candestroy")
             .then(ArgumentBuilders.literal("add")
@@ -49,7 +49,7 @@ public class CanDestroyCommand {
     private static int runCanDestroy(String string, CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
         if (!minecraft.player.isCreative()) {
 			MessageUtils.errorMessage("You need to be in build mode or dev mode to do this!");
-			return 0;
+			return 1;
         }
 
         switch (string) {
@@ -64,7 +64,7 @@ public class CanDestroyCommand {
                 return 1;
         }
 
-        return 0;
+        return 1;
     }
 
     private static int addCanDestroy(CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
@@ -73,7 +73,7 @@ public class CanDestroyCommand {
         // Checks if item stack is not air.
         if (itemStack.isEmpty()) {
             MessageUtils.errorMessage("Invalid item!");
-            return 0;
+            return 1;
         }
 
         // Checks if item has an NBT tag.
@@ -100,24 +100,24 @@ public class CanDestroyCommand {
         //Checks if item stack is not air.
 		if (itemStack.isEmpty()) {
 			MessageUtils.errorMessage("Invalid item!");
-            return 0;
+            return 1;
 		}
 		
 		//Checks if item has an NBT tag.
 		if (!itemStack.hasTag()) {
             MessageUtils.errorMessage("This item does not contain any CanDestroy tags!");
-            return 0;
+            return 1;
 		}
 		
 		//Checks if item has a CanDestroy tag.
 		if (!itemStack.getTag().containsKey("CanDestroy", 9)) {
             MessageUtils.errorMessage("This item does not contain any CanDestroy tags!");
-            return 0;
+            return 1;
         }
         
         if (itemStack.getTag().getList("CanDestroy", 8).size() == 0) {
             MessageUtils.errorMessage("This item does not contain any CanDestroy tags!");
-            return 0;
+            return 1;
 		}
         
         ListTag listTag = itemStack.getTag().getList("CanDestroy", 8);
@@ -142,7 +142,7 @@ public class CanDestroyCommand {
 		}
 
         MessageUtils.errorMessage("Could not find specified CanDestroy tag.");
-        return 0;
+        return 1;
     }
     private static int clearCanDestroy(CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
         ItemStack itemStack = minecraft.player.getMainHandStack();
@@ -150,19 +150,19 @@ public class CanDestroyCommand {
         //Checks if item stack is not air.
 		if (itemStack.isEmpty()) {
 			MessageUtils.errorMessage("Invalid item!");
-            return 0;
+            return 1;
 		}
         
 		//Checks if item has an NBT tag.
 		if (!itemStack.hasTag()) {
             MessageUtils.errorMessage("This item does not contain any CanDestroy tags!");
-            return 0;
+            return 1;
 		}
         
 		//Checks if item has a CanDestroy tag.
 		if (!itemStack.getTag().containsKey("CanDestroy", 9)) {
             MessageUtils.errorMessage("This item does not contain any CanDestroy tags!");
-            return 0;
+            return 1;
 		}
         
         itemStack.getTag().remove("CanDestroy");

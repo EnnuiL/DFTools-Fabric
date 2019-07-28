@@ -23,11 +23,11 @@ public class RenameCommand {
                 .executes(ctx -> runRename("clear", ctx))
         );
     }
-
+    
     private static int runRename(String string, CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
         if (!minecraft.player.isCreative()) {
             MessageUtils.errorMessage("You need to be in build mode or dev mode to do this!");
-            return 0;
+            return 1;
         }
 
         switch (string) {
@@ -39,7 +39,7 @@ public class RenameCommand {
             return 1;
         }
 
-        return 0;
+        return 1;
     }
 
     private static int rename(CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
@@ -48,40 +48,40 @@ public class RenameCommand {
         // Checks if item stack is not air.
         if (itemStack.isEmpty()) {
             MessageUtils.errorMessage("Invalid item!");
-            return 0;
+            return 1;
         }
 
         // Checks if item has an NBT tag.
         if (!itemStack.hasTag()) {
             itemStack.setTag(new CompoundTag());
         }
-
+        
         String name = StringArgumentType.getString(context, "name");
         itemStack.setCustomName(new LiteralText(name.replaceAll("&([0-9a-z]+)", "§$1")));
         //Sends updated item to the server.
         ItemUtils.setItemInHand(itemStack);
         return 1;
     }
-
+    
     private static int clearRename(CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
         ItemStack itemStack = minecraft.player.getMainHandStack();
 
         //Checks if item stack is not air.
 		if (itemStack.isEmpty()) {
 			MessageUtils.errorMessage("Invalid item!");
-            return 0;
+            return 1;
 		}
         
 		//Checks if item has an NBT tag.
 		if (!itemStack.hasTag()) {
             MessageUtils.errorMessage("This item does not contain any tags!");
-            return 0;
+            return 1;
 		}
 		
 		//Checks if item has a Display tag.
 		if (!itemStack.getTag().containsKey("display")) {
             MessageUtils.errorMessage("This item does not contain any custom name!");
-            return 0;
+            return 1;
 		}
         
         itemStack.getTag().remove("display");

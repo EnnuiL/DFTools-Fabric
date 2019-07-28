@@ -25,7 +25,7 @@ public class CustomModelDataCommand {
     private static int runCustomModel(String string, CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
         if (!minecraft.player.isCreative()) {
 			MessageUtils.errorMessage("You need to be in build mode or dev mode to do this!");
-			return 0;
+			return 1;
         }
 
         switch (string) {
@@ -37,7 +37,7 @@ public class CustomModelDataCommand {
                 return 1;
         }
 
-        return 0;
+        return 1;
     }
 
     private static int setCustomModel(CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
@@ -48,7 +48,7 @@ public class CustomModelDataCommand {
         // Checks if item stack is not air.
         if (itemStack.isEmpty()) {
             MessageUtils.errorMessage("Invalid item!");
-            return 0;
+            return 1;
         }
 
         // Checks if item has an NBT tag.
@@ -69,19 +69,19 @@ public class CustomModelDataCommand {
         //Checks if item stack is not air.
 		if (itemStack.isEmpty()) {
 			MessageUtils.errorMessage("Invalid item!");
-            return 0;
+            return 1;
 		}
         
 		//Checks if item has an NBT tag.
 		if (!itemStack.hasTag()) {
             MessageUtils.errorMessage("This item does not contain any CustomModelData tags!");
-            return 0;
+            return 1;
 		}
         
 		//Checks if item has a CustomModelData tag.
 		if (!itemStack.getTag().containsKey("CustomModelData")) {
             MessageUtils.errorMessage("This item does not contain any CustomModelData tags!");
-            return 0;
+            return 1;
 		}
         
         itemStack.getTag().remove("CustomModelData");
