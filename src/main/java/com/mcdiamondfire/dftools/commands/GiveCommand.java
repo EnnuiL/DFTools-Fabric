@@ -18,7 +18,7 @@ public class GiveCommand {
     public static void register(CommandDispatcher<CottonClientCommandSource> dispatcher) {
         dispatcher.register(ArgumentBuilders.literal("dfgive")
         .then(ArgumentBuilders.argument("item", ItemStackArgumentType.itemStack())
-            .then(ArgumentBuilders.argument("count", IntegerArgumentType.integer())
+            .then(ArgumentBuilders.argument("count", IntegerArgumentType.integer(1, 64))
                 .executes(ctx -> execute(ctx, true)))
             .executes(ctx -> execute(ctx, false)))
         .executes(ctx -> {
@@ -29,7 +29,7 @@ public class GiveCommand {
         // Shortcut to /dfgive, same code as above.
         dispatcher.register(ArgumentBuilders.literal("dfg")
         .then(ArgumentBuilders.argument("item", ItemStackArgumentType.itemStack())
-            .then(ArgumentBuilders.argument("count", IntegerArgumentType.integer())
+            .then(ArgumentBuilders.argument("count", IntegerArgumentType.integer(1, 64))
                 .executes(ctx -> execute(ctx, true)))
             .executes(ctx -> execute(ctx, false)))
         .executes(ctx -> {
@@ -45,7 +45,7 @@ public class GiveCommand {
         } 
 
         ItemStack itemStack = ItemStackArgumentType.getItemStackArgument(context, "item").createStack(amount, false);
-
+        
         //Checks if player is not in survival mode.
         if (!minecraft.player.isCreative()) {
             MessageUtils.errorMessage("You need to be in build mode or dev mode to do this!");

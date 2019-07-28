@@ -24,7 +24,7 @@ public class ItemUtils {
 					minecraft.player.networkHandler.sendPacket(new HeldItemChangeS2CPacket(firstEmptySlot));
 				}
 			} else {
-				minecraft.interactionManager.clickCreativeStack(itemStack, 36 + minecraft.player.inventory.selectedSlot);
+				minecraft.interactionManager.clickCreativeStack(itemStack, firstEmptySlot);
 			}
 		}
 	}
