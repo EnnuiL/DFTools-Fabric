@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "dftools",
   "version": "${version}",
-  "name": "DFTools",
+  "name": "DiamondFire Tools",
   "description": "A port of DFTools for Fabric, currently commands-only.",
   "authors": [
     "K_Sasha",
