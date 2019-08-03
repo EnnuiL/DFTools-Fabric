@@ -57,7 +57,7 @@ public class RenameCommand {
         }
         
         String name = StringArgumentType.getString(context, "name");
-        itemStack.setCustomName(new LiteralText(name.replaceAll("&([0-9a-z]+)", "§$1")));
+        itemStack.setCustomName(new LiteralText(name.replaceAll("&([0-9a-fk-or]+)", "§$1")));
         //Sends updated item to the server.
         ItemUtils.setItemInHand(itemStack);
         return 1;
