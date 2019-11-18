@@ -36,8 +36,6 @@ public class DFToolsHelpCommand {
             "§6> §e/custommodeldata",
             "§6> §e/dfgive   §7Similar to the default /give command.",
             "§6> §e/editname",
-            "§6> §e/itemdata §7Displays the NBT for the currently held item.",
-            "§6> §e/location move §Moves the coordinates of a location.",
             "§6> §e/rename  §7Similar to the default /rename command.",
             "§6> §e/unbreakable §7Similar to the default /unbreakable command.",
 			""
