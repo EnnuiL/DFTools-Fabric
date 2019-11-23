@@ -14,6 +14,7 @@ public class DFToolsCommands implements ClientCommandPlugin {
         EditNameCommand.register(dispatcher);
         GiveCommand.register(dispatcher);
         RenameCommand.register(dispatcher);
+        SavedToolbarCommand.register(dispatcher);
         UnbreakableCommand.register(dispatcher);
     }
 }
