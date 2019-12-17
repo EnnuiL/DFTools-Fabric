@@ -15,15 +15,17 @@ import net.minecraft.item.ItemStack;
 public class GiveCommand {
     private static final MinecraftClient minecraft = MinecraftClient.getInstance();
 
+    public static Boolean guiSummoned = false;
+
     public static void register(CommandDispatcher<CottonClientCommandSource> dispatcher) {
-        dispatcher.register(ArgumentBuilders.literal("dfgive")
+        dispatcher.register(ArgumentBuilders.literal("dfg")
         .then(ArgumentBuilders.argument("item", ItemStackArgumentType.itemStack())
             .then(ArgumentBuilders.argument("count", IntegerArgumentType.integer(1, 64))
                 .executes(ctx -> execute(ctx, true)))
             .executes(ctx -> execute(ctx, false)))
         .executes(ctx -> {
-                MessageUtils.errorMessage("Invalid item.");
-                return 1;
+            guiSummoned = true;
+            return 1;
         }));
 
         // Shortcut to /dfgive, same code as above.
@@ -33,8 +35,12 @@ public class GiveCommand {
                 .executes(ctx -> execute(ctx, true)))
             .executes(ctx -> execute(ctx, false)))
         .executes(ctx -> {
-                MessageUtils.errorMessage("Invalid item.");
+            if (!minecraft.player.isCreative()) {
+                MessageUtils.errorMessage("You need to be in build mode or dev mode to do this!");
                 return 1;
+            }
+            guiSummoned = true;
+            return 1;
         }));
     }
 

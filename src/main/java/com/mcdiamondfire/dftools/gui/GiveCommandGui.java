@@ -5,7 +5,6 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.*;
-import net.minecraft.client.options.HotbarStorage;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.StringNbtReader;
@@ -13,33 +12,23 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public class SavedToolbarGui extends LightweightGuiDescription {
-    public SavedToolbarGui(HotbarStorage hotbarStorage) {
+public class GiveCommandGui extends LightweightGuiDescription {
+    public GiveCommandGui() {
         WGridPanel root = new WGridPanel();
         setRootPanel(root);
         root.setSize(14 * 18, 6 * 18);
 
-        WLabel label = new WLabel("Saved Toolbar Editor");
+        WLabel label = new WLabel("Give Item");
         root.add(label, 0, 0);
 
-        WSprite itemIcon = new WSprite(new Identifier("minecraft:textures/item/iron_pickaxe.png"));
+        WSprite itemIcon = new WSprite(new Identifier("minecraft:textures/item/name_tag.png"));
         root.add(itemIcon, 0, 2, 1, 1);
 
         WTextField itemIdField = new WTextField();
-        Identifier defaultItemId = Registry.ITEM.getId(hotbarStorage.getSavedHotbar(0).get(0).getItem());
-        String tagToSet = hotbarStorage.getSavedHotbar(0).get(0).getOrCreateTag().toString();
-        if (tagToSet.length() == 2) {
-            tagToSet = "";
-        }
-        String amountToSet = "";
-        if (hotbarStorage.getSavedHotbar(0).get(0).getCount() != 1) {
-            amountToSet = " " + hotbarStorage.getSavedHotbar(0).get(0).getCount();
-        }
-        String textToSet = defaultItemId.toString() + tagToSet + amountToSet;
-        itemIdField.setSuggestion("Item ID").setMaxLength(16384).setText(textToSet);
+        itemIdField.setSuggestion("item:id{here}").setMaxLength(16384);
         root.add(itemIdField, 2, 2, 11, 1);
 
-        WButton button = new WButton(new LiteralText("Save"));
+        WButton button = new WButton(new LiteralText("Give"));
         root.add(button, 0, 5, 4, 1);
         
         button.setOnClick(() -> {
