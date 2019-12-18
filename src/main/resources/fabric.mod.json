@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "id": "dftools",
   "version": "${version}",
-  "name": "DFTools Lite",
-  "description": "A port of DFTools for Fabric with fewer features.",
+  "name": "DiamondFire Tools",
+  "description": "The successor of DFTools, made for Fabric.",
   "authors": [
     "K_Sasha",
     "Timeraa",
