@@ -24,6 +24,10 @@ public class GiveCommand {
                 .executes(ctx -> execute(ctx, true)))
             .executes(ctx -> execute(ctx, false)))
         .executes(ctx -> {
+            if (!minecraft.player.isCreative()) {
+                MessageUtils.errorMessage("You need to be in build mode or dev mode to do this!");
+                return 1;
+            }
             guiSummoned = true;
             return 1;
         }));

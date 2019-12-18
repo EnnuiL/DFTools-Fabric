@@ -9,10 +9,12 @@ public class DFToolsCommands implements ClientCommandPlugin {
         BreakableCommand.register(dispatcher);
         CanDestroyCommand.register(dispatcher);
         CanPlaceCommand.register(dispatcher);
+        ClipboardCommand.register(dispatcher);
         CustomModelDataCommand.register(dispatcher);
         DFToolsHelpCommand.register(dispatcher);
         EditNameCommand.register(dispatcher);
         GiveCommand.register(dispatcher);
+        ItemDataCommand.register(dispatcher);
         RenameCommand.register(dispatcher);
         SavedToolbarCommand.register(dispatcher);
         UnbreakableCommand.register(dispatcher);
