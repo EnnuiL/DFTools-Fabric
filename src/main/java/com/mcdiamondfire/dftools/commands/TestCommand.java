@@ -23,7 +23,7 @@ public class TestCommand {
     private static int execute(CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
         String[] code = new String[] {
             "event command",
-            "	player.sendMessage(\"hey ya\")"
+            "	player.sendMessage:all(\"hey ya\")"
         };
 
         JsonObject JSON = new JsonObject();
@@ -37,20 +37,20 @@ public class TestCommand {
 
         Integer lookForTabs = 0;
 
-        for (String string : code) {
-            if (string.startsWith("event")) {
+        for (int i = 0; i < code.length; i++) {
+            if (code[i].startsWith("event")) {
                 System.out.println("Event detected!");
-                JsonObject jsonEvent = ParserUtils.parseEvent(string.replace("event ", ""));
+                JsonObject jsonEvent = ParserUtils.parseEvent(code[i].replace("event ", ""));
                 JSON.get("blocks").getAsJsonArray().add(jsonEvent);
                 MessageUtils.infoMessage(jsonEvent.toString());
                 lookForTabs += 1;
-            }
-            if (lookForTabs != 0) {
-                if (string.replace("	", "₢").startsWith("₢")) {
-                    string.replace("₢", "");
-                    JsonObject jsonAction = ParserUtils.parseAction(string);
+            } else if (lookForTabs != 0) {
+                System.out.println(code[i]);
+                if (code[i].strip() != code[i]) {
+                    code[i] = code[i].strip();
+                    JsonObject jsonAction = ParserUtils.parseAction(code[i]);
                     JSON.get("blocks").getAsJsonArray().add(jsonAction);
-                    MessageUtils.infoMessage(jsonAction.toString());
+                    MessageUtils.infoMessage(JSON.toString());
                 } else {
                     lookForTabs -= 1;
                 }
