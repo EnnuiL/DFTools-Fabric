@@ -18,7 +18,7 @@ public class GiveCommand {
     public static Boolean guiSummoned = false;
 
     public static void register(CommandDispatcher<CottonClientCommandSource> dispatcher) {
-        dispatcher.register(ArgumentBuilders.literal("dfg")
+        dispatcher.register(ArgumentBuilders.literal("dfgive")
         .then(ArgumentBuilders.argument("item", ItemStackArgumentType.itemStack())
             .then(ArgumentBuilders.argument("count", IntegerArgumentType.integer(1, 64))
                 .executes(ctx -> execute(ctx, true)))

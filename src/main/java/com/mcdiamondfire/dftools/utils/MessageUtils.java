@@ -5,7 +5,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 
 public class MessageUtils {
-	
 	private static final MinecraftClient minecraft = MinecraftClient.getInstance();
 	
 	private static final String INFO_PREFIX = "§b❱§3❱ §b";

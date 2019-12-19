@@ -44,11 +44,11 @@ public class ItemDataCommand {
             return 1;
 		}
         
-        String itemTag = itemStack.getTag().toString().replaceAll("§", "&");
+        String itemTag = itemStack.getTag().toString();
         
         //Creates the click and hover events for the message.
 		Style messageStyle = new Style();
-		messageStyle.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/dftools-copytoclipboard " + itemTag));
+		messageStyle.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/dftcopy text " + itemTag));
 		messageStyle.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new LiteralText("Click here to copy the\nNBT to your clipboard.").formatted(Formatting.BLUE)));
 		
 		//Creates the actual message text component.

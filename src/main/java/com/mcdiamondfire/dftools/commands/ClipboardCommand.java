@@ -13,13 +13,17 @@ import net.minecraft.client.util.Clipboard;
 public class ClipboardCommand {
     private static final MinecraftClient minecraft = MinecraftClient.getInstance();
 
-    //TODO - Convert to "/clipboard copy" to be less messy.
     public static void register(CommandDispatcher<CottonClientCommandSource> dispatcher) {
-        dispatcher.register(ArgumentBuilders.literal("dftools-copytoclipboard")
-                .then(ArgumentBuilders.argument("textToCopy", StringArgumentType.greedyString())
-                    .executes(ctx -> execute(ctx)))
+        dispatcher.register(ArgumentBuilders.literal("dftcopy")
+                .then(ArgumentBuilders.literal("text")
+                    .then(ArgumentBuilders.argument("textToCopy", StringArgumentType.greedyString())
+                        .executes(ctx -> execute(ctx))))
+                    .executes(ctx -> {
+                        MessageUtils.errorMessage("No text was detected!");
+                        return 1;
+                    })
                 .executes(ctx -> {
-                    MessageUtils.errorMessage("No text was detected!");
+                    MessageUtils.errorMessage("Invalid mode!");
                     return 1;
                 })
         );

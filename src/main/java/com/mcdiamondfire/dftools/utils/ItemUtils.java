@@ -5,7 +5,6 @@ import net.minecraft.client.network.packet.HeldItemChangeS2CPacket;
 import net.minecraft.item.ItemStack;
 
 public class ItemUtils {
-	
 	private static final MinecraftClient minecraft = MinecraftClient.getInstance();
 	
 	public static void setItemInHand(ItemStack itemStack) {
