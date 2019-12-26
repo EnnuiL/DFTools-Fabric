@@ -58,7 +58,7 @@ public class GiveCommandGui extends LightweightGuiDescription {
                     e.printStackTrace();
                 }
             }
-            Integer itemStackAmount = Integer.decode(amount);
+            int itemStackAmount = Integer.parseInt(amount);
             if (itemStackAmount >= itemStack.getMaxCount()) {
                 itemStackAmount = itemStack.getMaxCount();
             }

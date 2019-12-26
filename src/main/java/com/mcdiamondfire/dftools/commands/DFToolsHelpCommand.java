@@ -36,6 +36,7 @@ public class DFToolsHelpCommand {
             "§6> §e/custommodeldata",
             "§6> §e/dfgive   §7Works like /give, has a menu when typed alone.",
             "§6> §e/editname",
+            "§6> §e/itemdata §7Displays the NBT for the currently held item.",
             "§6> §e/rename  §7Similar to the default /rename command.",
             "§6> §e/unbreakable §7Similar to the default /unbreakable command.",
 			""

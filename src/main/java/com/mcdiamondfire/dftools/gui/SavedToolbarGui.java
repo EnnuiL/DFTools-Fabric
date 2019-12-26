@@ -69,7 +69,7 @@ public class SavedToolbarGui extends LightweightGuiDescription {
                     e.printStackTrace();
                 }
             }
-            Integer itemStackAmount = Integer.decode(amount);
+            int itemStackAmount = Integer.decode(amount);
             if (itemStackAmount >= itemStack.getMaxCount()) {
                 itemStackAmount = itemStack.getMaxCount();
             }

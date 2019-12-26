@@ -43,7 +43,7 @@ public class CustomModelDataCommand {
     private static int setCustomModel(CommandContext<CottonClientCommandSource> context) throws CommandSyntaxException {
         ItemStack itemStack = minecraft.player.getMainHandStack();
         
-        Integer id = IntegerArgumentType.getInteger(context, "id");
+        int id = IntegerArgumentType.getInteger(context, "id");
 
         // Checks if item stack is not air.
         if (itemStack.isEmpty()) {

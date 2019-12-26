@@ -49,7 +49,7 @@ public class GiveCommand {
     }
 
     private static int execute(CommandContext<CottonClientCommandSource> context, Boolean useAmount) throws CommandSyntaxException {
-        Integer amount = 1;
+        int amount = 1;
         if (useAmount == true) {
             amount = IntegerArgumentType.getInteger(context, "count");
         }
