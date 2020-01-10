@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 public class GiveCommand {
     private static final MinecraftClient minecraft = MinecraftClient.getInstance();
 
-    public static Boolean guiSummoned = false;
+    public static boolean guiSummoned = false;
 
     public static void register(CommandDispatcher<CottonClientCommandSource> dispatcher) {
         dispatcher.register(ArgumentBuilders.literal("dfgive")
@@ -48,7 +48,7 @@ public class GiveCommand {
         }));
     }
 
-    private static int execute(CommandContext<CottonClientCommandSource> context, Boolean useAmount) throws CommandSyntaxException {
+    private static int execute(CommandContext<CottonClientCommandSource> context, boolean useAmount) throws CommandSyntaxException {
         int amount = 1;
         if (useAmount == true) {
             amount = IntegerArgumentType.getInteger(context, "count");

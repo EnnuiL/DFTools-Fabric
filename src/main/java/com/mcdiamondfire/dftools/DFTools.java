@@ -14,8 +14,8 @@ public class DFTools implements ClientModInitializer {
 	public void onInitializeClient() {
 		ClientTickCallback.EVENT.register(e -> {
 			if (GiveCommand.guiSummoned == true) {
-				minecraft.openScreen(new GiveCommandScreen(new GiveCommandGui()));
 				GiveCommand.guiSummoned = false;
+				minecraft.openScreen(new GiveCommandScreen(new GiveCommandGui()));
 			}
 		});
 	}

@@ -33,7 +33,7 @@ public class ClipboardCommand {
         //Get the string.
         String textToCopy = StringArgumentType.getString(context, "textToCopy");
 
-        //Creates a clipboard instance then copies the data.
+        //Creates a clipboard instance then copies the string.
         Clipboard clipboard = new Clipboard();
         clipboard.setClipboard(minecraft.window.getHandle(), textToCopy);
 

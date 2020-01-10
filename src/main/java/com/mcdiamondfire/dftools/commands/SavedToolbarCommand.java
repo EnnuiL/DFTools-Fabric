@@ -31,7 +31,7 @@ public class SavedToolbarCommand {
         }));
     }
 
-    private static int execute(CommandContext<CottonClientCommandSource> context, Boolean useAmount) throws CommandSyntaxException {
+    private static int execute(CommandContext<CottonClientCommandSource> context, boolean useAmount) throws CommandSyntaxException {
         int amount = 1;
         if (useAmount == true) {
             amount = IntegerArgumentType.getInteger(context, "count");
