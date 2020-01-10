@@ -79,7 +79,7 @@ public class RenameCommand {
 		}
 		
 		//Checks if item has a Display tag.
-		if (!itemStack.getTag().containsKey("display")) {
+		if (!itemStack.getTag().contains("display")) {
             MessageUtils.errorMessage("This item does not contain any custom name!");
             return 1;
 		}

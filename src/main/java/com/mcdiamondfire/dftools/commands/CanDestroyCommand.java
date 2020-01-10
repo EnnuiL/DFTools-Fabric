@@ -82,12 +82,14 @@ public class CanDestroyCommand {
         }
 
         // Checks if item has a CanDestroy tag.
-        if (!itemStack.getTag().containsKey("CanDestroy", 9)) {
+        if (!itemStack.getTag().contains("CanDestroy", 9)) {
             itemStack.getTag().put("CanDestroy", new ListTag());
         }
 
         BlockStateArgument tag = context.getArgument("id", BlockStateArgument.class);
-        itemStack.getTag().getList("CanDestroy", 8).add(new StringTag(Registry.BLOCK.getId(tag.getBlockState().getBlock()).toString()));
+        StringTag stringTag = StringTag.of(Registry.BLOCK.getId(tag.getBlockState().getBlock()).toString());
+
+        itemStack.getTag().getList("CanDestroy", 8).add(stringTag);
         //Sends updated item to the server.
         ItemUtils.setItemInHand(itemStack);
         
@@ -110,7 +112,7 @@ public class CanDestroyCommand {
 		}
 		
 		//Checks if item has a CanDestroy tag.
-		if (!itemStack.getTag().containsKey("CanDestroy", 9)) {
+		if (!itemStack.getTag().contains("CanDestroy", 9)) {
             MessageUtils.errorMessage("This item does not contain any CanDestroy tags!");
             return 1;
         }
@@ -160,7 +162,7 @@ public class CanDestroyCommand {
 		}
         
 		//Checks if item has a CanDestroy tag.
-		if (!itemStack.getTag().containsKey("CanDestroy", 9)) {
+        if (!itemStack.getTag().contains("CanDestroy", 9)) {
             MessageUtils.errorMessage("This item does not contain any CanDestroy tags!");
             return 1;
 		}

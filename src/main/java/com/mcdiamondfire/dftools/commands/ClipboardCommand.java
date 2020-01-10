@@ -35,7 +35,7 @@ public class ClipboardCommand {
 
         //Creates a clipboard instance then copies the string.
         Clipboard clipboard = new Clipboard();
-        clipboard.setClipboard(minecraft.window.getHandle(), textToCopy);
+        clipboard.setClipboard(minecraft.getWindow().getHandle(), textToCopy);
 
         //Sends the message.
         MessageUtils.infoMessage("Text successfully copied to clipboard.");

@@ -79,7 +79,7 @@ public class CustomModelDataCommand {
 		}
         
 		//Checks if item has a CustomModelData tag.
-		if (!itemStack.getTag().containsKey("CustomModelData")) {
+		if (!itemStack.getTag().contains("CustomModelData")) {
             MessageUtils.errorMessage("This item does not contain any CustomModelData tags!");
             return 1;
 		}

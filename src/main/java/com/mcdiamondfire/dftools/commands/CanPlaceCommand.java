@@ -82,12 +82,14 @@ public class CanPlaceCommand {
 		}
 		
 		//Checks if item has a CanPlaceOn tag.
-		if (!itemStack.getTag().containsKey("CanPlaceOn", 9)) {
+		if (!itemStack.getTag().contains("CanPlaceOn", 9)) {
             itemStack.getTag().put("CanPlaceOn", new ListTag());
 		}
         
         BlockStateArgument tag = context.getArgument("id", BlockStateArgument.class);
-        itemStack.getTag().getList("CanPlaceOn", 8).add(new StringTag(Registry.BLOCK.getId(tag.getBlockState().getBlock()).toString()));
+        StringTag stringTag = StringTag.of(Registry.BLOCK.getId(tag.getBlockState().getBlock()).toString());
+
+        itemStack.getTag().getList("CanPlaceOn", 8).add(stringTag);
         //Sends updated item to the server.
         ItemUtils.setItemInHand(itemStack);
         
@@ -111,7 +113,7 @@ public class CanPlaceCommand {
 		}
 		
 		//Checks if item has a CanPlaceOn tag.
-		if (!itemStack.getTag().containsKey("CanPlaceOn", 9)) {
+		if (!itemStack.getTag().contains("CanPlaceOn", 9)) {
             MessageUtils.errorMessage("This item does not contain any CanPlaceOn tags!");
             return 0;
         }
@@ -160,7 +162,7 @@ public class CanPlaceCommand {
 		}
 		
 		//Checks if item has a CanPlaceOn tag.
-		if (!itemStack.getTag().containsKey("CanPlaceOn", 9)) {
+		if (!itemStack.getTag().contains("CanPlaceOn", 9)) {
             MessageUtils.errorMessage("This item does not contain any CanPlaceOn tags!");
             return 1;
 		}
