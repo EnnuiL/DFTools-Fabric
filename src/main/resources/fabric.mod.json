@@ -5,9 +5,9 @@
   "name": "DiamondFire Tools",
   "description": "The successor of DFTools, made for Fabric.",
   "authors": [
+    "joaoh1",
     "K_Sasha",
-    "Timeraa",
-    "joaoh1"
+    "Timeraa"
   ],
   "contact": {
     "homepage": "https://www.mcdiamondfire.com/",
@@ -15,7 +15,7 @@
   },
   "license": "Apache 2.0",
   "icon": "assets/dftools/icon.png",
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "cotton-client-commands": ["com.mcdiamondfire.dftools.commands.DFToolsCommands"],
     "client": [
