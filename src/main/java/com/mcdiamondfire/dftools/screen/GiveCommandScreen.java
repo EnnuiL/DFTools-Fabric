@@ -19,6 +19,8 @@ import spinnery.widget.WType;
 
 public class GiveCommandScreen extends BaseScreen {
 	public GiveCommandScreen() {
+		super();
+		
 		WInterface mainInterface = new WInterface(WPosition.of(WType.FREE, 0, 0, 0), WSize.of(250, 100));
 		getInterfaces().add(mainInterface);
 		mainInterface.center();
@@ -67,7 +69,7 @@ public class GiveCommandScreen extends BaseScreen {
 					itemStackAmount = itemStack.getMaxCount();
 				}
 				itemStack.setCount(itemStackAmount);
-	
+
 				ItemUtils.setItemInHotbar(itemStack, false);
 			}
 		});
