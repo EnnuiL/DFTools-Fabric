@@ -8,7 +8,6 @@ import com.mojang.brigadier.context.CommandContext;
 
 import io.github.cottonmc.clientcommands.*;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.Clipboard;
 
 public class ClipboardCommand {
     private static final MinecraftClient minecraft = MinecraftClient.getInstance();
@@ -33,9 +32,8 @@ public class ClipboardCommand {
         //Get the string.
         String textToCopy = StringArgumentType.getString(context, "textToCopy");
 
-        //Creates a clipboard instance then copies the string.
-        Clipboard clipboard = new Clipboard();
-        clipboard.setClipboard(minecraft.getWindow().getHandle(), textToCopy);
+        //Copy the string to the clipboard.
+        minecraft.keyboard.setClipboard(textToCopy);
 
         //Sends the message.
         MessageUtils.infoMessage("Text successfully copied to clipboard.");

@@ -22,7 +22,7 @@ public class GiveCommandScreen extends BaseScreen {
 		super();
 		
 		WInterface mainInterface = new WInterface(WPosition.of(WType.FREE, 0, 0, 0), WSize.of(250, 100));
-		getInterfaces().add(mainInterface);
+		getInterfaceHolder().add(mainInterface);
 		mainInterface.center();
 
 		setIsPauseScreen(true);
@@ -37,7 +37,7 @@ public class GiveCommandScreen extends BaseScreen {
 		giveButton.setLabel(new LiteralText("Give"));
 
 		giveButton.setOnMouseClicked(() -> {
-			if (giveButton.getToggleState()) {
+			if (giveButton.isLowered()) {
 				String[] itemIdArray = textBox.getText().split("[{]", 2);
 				String[] itemIdArrayWithAmount = textBox.getText().split(" (?!.* )", 2);
 				String itemIdentifier = itemIdArray[0];
