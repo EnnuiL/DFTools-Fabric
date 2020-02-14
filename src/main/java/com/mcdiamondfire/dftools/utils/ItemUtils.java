@@ -1,7 +1,7 @@
 package com.mcdiamondfire.dftools.utils;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.packet.HeldItemChangeS2CPacket;
+import net.minecraft.network.packet.s2c.play.HeldItemChangeS2CPacket;
 import net.minecraft.item.ItemStack;
 
 public class ItemUtils {

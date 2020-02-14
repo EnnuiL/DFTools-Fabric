@@ -14,6 +14,8 @@ minecraft {
 }
 
 repositories {
+	//the release repo is for Spinnery
+	maven { url = 'http://server.bbkr.space:8081/artifactory/libs-release' }
 	maven { url = 'http://server.bbkr.space:8081/artifactory/libs-snapshot' }
 	maven { url = 'https://jitpack.io' }
 }
