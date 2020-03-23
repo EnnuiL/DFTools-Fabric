@@ -1,8 +1,8 @@
-<img src="./src/main/resources/assets/crid/icon.png" align="right" width="128px"/>
+<img src="./src/main/resources/assets/dftools/icon.png" align="right" width="128px"/>
 
 # DiamondFire Tools: Fabric Edition
 
-This is a port of the DiamondFire Tools mod, which was originally made for Forge, this port aims to rewrite all the features so they can take advantage of new systems, such as the Brigadier system. Currently, the focus is to provide new GUIs in general, like one for /give and one that replaces the game menu.
+This is a port of the DiamondFire Tools mod, which was originally made for Forge 1.12.2, this port aims to rewrite all the features so they can take advantage of new systems, such as the Brigadier system. Currently, the focus is to provide new GUIs in general, like one for /give and one that replaces the game menu.
 
 ## Download
 

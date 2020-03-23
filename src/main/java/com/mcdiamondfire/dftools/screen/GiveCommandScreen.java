@@ -26,7 +26,7 @@ public class GiveCommandScreen extends BaseScreen {
 		setIsPauseScreen(true);
 		mainInterface.setBlurred(true);
 
-		WTextArea textBox = new WTextArea();
+		WTextArea textBox = new WTextArea().setLineWrap(true);
 		textBox.getPosition().setAnchor(mainPanel).set(6, 18, 0);
 		textBox.getSize().setWidth(238).setHeight(63);
 		textBox.setLabel(new LiteralText("minecraft:item_id{Tag:Here}"));
