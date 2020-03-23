@@ -1,6 +1,7 @@
 package com.mcdiamondfire.dftools;
 
 import com.mcdiamondfire.dftools.commands.GiveCommand;
+import com.mcdiamondfire.dftools.screen.CodeTemplateScreen;
 import com.mcdiamondfire.dftools.screen.GiveCommandScreen;
 
 import net.fabricmc.api.ClientModInitializer;
@@ -12,9 +13,16 @@ public class DFTools implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		ClientTickCallback.EVENT.register(e -> {
-			if (GiveCommand.guiSummoned == true) {
-				GiveCommand.guiSummoned = false;
-				minecraft.openScreen(new GiveCommandScreen());
+			if (GiveCommand.guiSummoned != 0) {
+				if (GiveCommand.guiSummoned == 1) {
+					minecraft.openScreen(new GiveCommandScreen());
+				}
+
+				if (GiveCommand.guiSummoned == 2) {
+					minecraft.openScreen(new CodeTemplateScreen());
+				}
+
+				GiveCommand.guiSummoned = 0;
 			}
 		});
 	}

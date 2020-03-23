@@ -17,10 +17,16 @@ public class GiveCommandScreen extends BaseScreen {
 		WPanel mainPanel = new WPanel();
 		mainPanel.getSize().setWidth(250).setHeight(100);
 		//mainPanel.center();
-		mainPanel.setPosition(Position.of(mainPanel.getPosition())
-			.setX(mainInterface.getX() + mainInterface.getWidth() / 2 - mainPanel.getWidth() / 2)
-			.setY(mainInterface.getY() + mainInterface.getHeight() / 2 - mainPanel.getHeight() / 2)
-		);
+        mainPanel.setPosition(Position.of(mainPanel.getPosition())
+            .setX(mainInterface.getX() + mainInterface.getWidth() / 2 - mainPanel.getWidth() / 2)
+            .setY(mainInterface.getY() + mainInterface.getHeight() / 2 - mainPanel.getHeight() / 2)
+        );
+        mainPanel.setOnAlign((WPanel panel) -> {
+            panel.setPosition(Position.of(mainPanel.getPosition())
+                .setX(mainInterface.getX() + mainInterface.getWidth() / 2 - mainPanel.getWidth() / 2)
+                .setY(mainInterface.getY() + mainInterface.getHeight() / 2 - mainPanel.getHeight() / 2)
+            );
+        });
 		mainPanel.setLabel("Give Item");
 
 		setIsPauseScreen(true);
@@ -32,7 +38,7 @@ public class GiveCommandScreen extends BaseScreen {
 		textBox.setLabel(new LiteralText("minecraft:item_id{Tag:Here}"));
 
 		WButton giveButton = new WButton();
-		giveButton.getPosition().setAnchor(mainPanel).set(218, 82, 0);
+		giveButton.getPosition().setAnchor(mainPanel).set(220, 82, 0);
 		giveButton.getSize().setWidth(26).setHeight(14);
 		giveButton.setLabel(new LiteralText("Give"));
 
