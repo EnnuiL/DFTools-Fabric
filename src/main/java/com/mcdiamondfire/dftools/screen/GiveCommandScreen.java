@@ -1,19 +1,11 @@
 package com.mcdiamondfire.dftools.screen;
 
-import com.mcdiamondfire.dftools.utils.ItemUtils;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.StringNbtReader;
 import net.minecraft.text.LiteralText;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import spinnery.client.BaseScreen;
 import spinnery.widget.WInterface;
 import spinnery.widget.WPanel;
 import spinnery.widget.WButton;
-import spinnery.widget.WTextField;
+import spinnery.widget.WTextArea;
 import spinnery.widget.api.Position;
 
 public class GiveCommandScreen extends BaseScreen {
@@ -34,7 +26,7 @@ public class GiveCommandScreen extends BaseScreen {
 		setIsPauseScreen(true);
 		mainInterface.setBlurred(true);
 
-		WTextField textBox = new WTextField();
+		WTextArea textBox = new WTextArea();
 		textBox.getPosition().setAnchor(mainPanel).set(6, 18, 0);
 		textBox.getSize().setWidth(238).setHeight(63);
 		textBox.setLabel(new LiteralText("minecraft:item_id{Tag:Here}"));
@@ -45,39 +37,7 @@ public class GiveCommandScreen extends BaseScreen {
 		giveButton.setLabel(new LiteralText("Give"));
 
 		giveButton.setOnMouseClicked((WButton w, int mouseX, int mouseY, int mouseButton) -> {
-			String[] itemIdArray = textBox.getText().split("[{]", 2);
-			String[] itemIdArrayWithAmount = textBox.getText().split(" (?!.* )", 2);
-			String itemIdentifier = itemIdArray[0];
-			String itemTag = "{}";
-			String amount = "1";
-			if (itemIdArray.length == 2) {
-				itemTag = "{" + itemIdArray[1];
-			}
-			if (itemIdArrayWithAmount.length == 2) {
-				if (itemTag == "{}") {
-					itemIdentifier = itemIdArrayWithAmount[0].replace(itemTag, "");
-				} else {
-					itemTag = itemIdArrayWithAmount[0].replace(itemIdentifier, "");
-				}
-				amount = itemIdArrayWithAmount[1];
-			}
-			Identifier itemStackID = new Identifier(itemIdentifier);
-			ItemStack itemStack = new ItemStack(Registry.ITEM.get(itemStackID));
-			if (itemIdArray.length == 2) {
-				try {
-					CompoundTag itemStackTag = StringNbtReader.parse(itemTag);
-					itemStack.setTag(itemStackTag);
-				} catch (CommandSyntaxException e) {
-					e.printStackTrace();
-				}
-			}
-			int itemStackAmount = Integer.parseInt(amount);
-			if (itemStackAmount >= itemStack.getMaxCount()) {
-				itemStackAmount = itemStack.getMaxCount();
-			}
-			itemStack.setCount(itemStackAmount);
-
-			ItemUtils.setItemInHotbar(itemStack, false);
+			minecraft.player.sendChatMessage("/dfg " + textBox.getText());
 		});
 
 		mainInterface.add(giveButton, textBox, mainPanel);
