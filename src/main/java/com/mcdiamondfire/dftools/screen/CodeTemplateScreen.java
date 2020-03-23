@@ -64,7 +64,7 @@ public class CodeTemplateScreen extends BaseScreen {
 		giveButton.setLabel(new LiteralText("Give"));
 
 		giveButton.setOnMouseClicked((WButton w, int mouseX, int mouseY, int mouseButton) -> {
-            String formattedName = nameTextField.getText().replaceAll("&([0-9a-fk-or]+)", "§$1").replaceAll(">>", "»").replaceAll("/>>", ">>");
+            String formattedName = nameTextField.getText().replaceAll("&([0-9a-fk-or]+)", "§$1").replaceAll(">>", "»").replaceAll("/»", ">>");
 			minecraft.player.sendChatMessage("/dfg minecraft:ender_chest{PublicBukkitValues:{\"hypercube:codetemplatedata\":'{\"author\":\"" + authorTextField.getText() + "\",\"name\":\"" + formattedName + "\",\"version\":1,\"code\":\"" + codeTextField.getText() + "\"}'},display:{Name:'{\"text\":\"" + formattedName + "\"}'}}");
 		});
 
