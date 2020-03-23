@@ -6,7 +6,7 @@ This is a port of the DiamondFire Tools mod, which was originally made for Forge
 
 ## Download
 
-You can obtain DFTools through this repository's [GitHub Releases](https://github.com/joaoh1/OkZoomer/releases), due to this mod's nature, there is no CurseForge release, indev releases are also available as [GitHub Packages](https://github.com/joaoh1/OkZoomer/packages) but they are unstable and might have serious issues.
+You can obtain DFTools through this repository's [GitHub Releases](https://github.com/joaoh1/DFTools-Fabric/releases), due to this mod's nature, there is no CurseForge release, indev releases are also available as [GitHub Packages](https://github.com/joaoh1/DFTools-Fabric/packages) but they are unstable and might have serious issues.
 
 ## License
 
