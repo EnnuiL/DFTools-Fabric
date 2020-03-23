@@ -7,17 +7,26 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 archivesBaseName = project.archives_base_name
-version = project.mod_version
+
+if (System.env.ONE_PLUS_ONE == "TWO") {
+	def branch
+	branch = System.env.GITHUB_REF
+	branch = branch.substring(branch.lastIndexOf("/")+1)
+
+	version = "${project.mod_version}.${branch}+${System.env.GITHUB_RUN_NUMBER}"
+} else {
+	version = project.mod_version
+}
+
 group = project.maven_group
 
 minecraft {
 }
 
 repositories {
-	//the release repo is for Spinnery
-	maven { url = 'http://server.bbkr.space:8081/artifactory/libs-release' }
+	mavenCentral()
 	maven { url = 'http://server.bbkr.space:8081/artifactory/libs-snapshot' }
-	maven { url = 'https://jitpack.io' }
+	maven { url = 'https://dl.bintray.com/spinnery/Spinnery' }
 }
 
 dependencies {
@@ -25,22 +34,21 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
+	
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
 	modImplementation "io.github.cottonmc:cotton-client-commands:${project.ccc_version}"
-	include "io.github.cottonmc:cotton-client-commands:${project.ccc_version}"
+	modImplementation "com.github.vini2003:spinnery:${project.spinnery_version}"
 
-	modImplementation "com.github.vini2003:Spinnery:${project.spinnery_version}"
-	include "com.github.vini2003:Spinnery:${project.spinnery_version}"
+	include "io.github.cottonmc:cotton-client-commands:${project.ccc_version}"
+	include "com.github.vini2003:spinnery:${project.spinnery_version}"
 }
 
 processResources {
-	inputs.property "version", project.mod_version
+	inputs.property "version", project.version
 
 	from(sourceSets.main.resources.srcDirs) {
 		include "fabric.mod.json"
-		expand "version": project.mod_version
+		expand "version": project.version
 	}
 
 	from(sourceSets.main.resources.srcDirs) {
@@ -69,21 +77,29 @@ jar {
 
 // configure the maven publication
 publishing {
+	repositories {
+		maven {
+		    name = "GitHubPackages"
+			// crid | replace the link with the correct repository
+            url = uri("https://maven.pkg.github.com/joaoh1/DFTools-Fabric")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("PASSWORD")
+            }
+		}
+		// uncomment to publish to the local maven
+		// mavenLocal()
+	}
+
 	publications {
 		mavenJava(MavenPublication) {
 			// add all the jars that should be included when publishing to maven
-			artifact(jar) {
+			artifact(remapJar) {
 				builtBy remapJar
 			}
 			artifact(sourcesJar) {
 				builtBy remapSourcesJar
 			}
 		}
-	}
-
-	// select the repositories you want to publish to
-	repositories {
-		// uncomment to publish to the local maven
-		// mavenLocal()
 	}
 }
