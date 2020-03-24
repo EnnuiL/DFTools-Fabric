@@ -1,5 +1,6 @@
 package com.mcdiamondfire.dftools.screen;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 import spinnery.client.BaseScreen;
@@ -13,6 +14,8 @@ import spinnery.widget.api.Position;
 public class CodeTemplateScreen extends BaseScreen {
 	public CodeTemplateScreen() {
 		super();
+
+        MinecraftClient minecraft = MinecraftClient.getInstance();
 
         WInterface mainInterface = getInterface();
 		
@@ -41,6 +44,7 @@ public class CodeTemplateScreen extends BaseScreen {
 		WTextField authorTextField = new WTextField();
 		authorTextField.getPosition().setAnchor(mainPanel).set(82, 22, 0);
         authorTextField.getSize().setWidth(162).setHeight(16);
+        authorTextField.setText(minecraft.player.getName().asFormattedString());
         
         WStaticText nameLabel = new WStaticText();
         nameLabel.getPosition().setAnchor(mainPanel).set(6, 46, 0);

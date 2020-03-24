@@ -1,5 +1,6 @@
 package com.mcdiamondfire.dftools.screen;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;
 import spinnery.client.BaseScreen;
 import spinnery.widget.WInterface;
@@ -11,6 +12,8 @@ import spinnery.widget.api.Position;
 public class GiveCommandScreen extends BaseScreen {
 	public GiveCommandScreen() {
 		super();
+		
+		MinecraftClient minecraft = MinecraftClient.getInstance();
 
 		WInterface mainInterface = getInterface();
 		
