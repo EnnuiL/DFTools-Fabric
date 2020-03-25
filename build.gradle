@@ -25,7 +25,7 @@ minecraft {
 
 repositories {
 	mavenCentral()
-	maven { url = 'http://server.bbkr.space:8081/artifactory/libs-snapshot' }
+	maven { url = 'http://server.bbkr.space:8081/artifactory/libs-release' }
 	maven { url = 'https://dl.bintray.com/spinnery/Spinnery' }
 }
 
