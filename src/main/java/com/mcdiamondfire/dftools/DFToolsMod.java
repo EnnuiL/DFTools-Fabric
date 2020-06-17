@@ -15,10 +15,12 @@ public class DFToolsMod implements ClientModInitializer {
 		ClientTickCallback.EVENT.register(e -> {
 			if (GiveCommand.guiSummoned != 0) {
 				if (GiveCommand.guiSummoned == 1) {
+					minecraft.keyboard.enableRepeatEvents(true);
 					minecraft.openScreen(new GiveCommandScreen());
 				}
 
 				if (GiveCommand.guiSummoned == 2) {
+					minecraft.keyboard.enableRepeatEvents(true);
 					minecraft.openScreen(new CodeTemplateScreen());
 				}
 
