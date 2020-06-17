@@ -13,14 +13,12 @@
     "homepage": "https://www.mcdiamondfire.com/",
     "sources": "https://github.com/joaoh1/DFTools-Fabric"
   },
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "icon": "assets/dftools/icon.png",
   "environment": "client",
   "entrypoints": {
-    "cotton-client-commands": ["com.mcdiamondfire.dftools.commands.DFToolsCommands"],
-    "client": [
-      "com.mcdiamondfire.dftools.DFTools"
-    ]
+    "client": ["com.mcdiamondfire.dftools.DFTools"],
+    "cotton-client-commands": ["com.mcdiamondfire.dftools.commands.DFToolsCommands"]
   },
   "depends": {
     "cotton-client-commands": ">=0.4.2",

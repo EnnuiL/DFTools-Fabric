@@ -22,7 +22,7 @@ import net.minecraft.util.registry.Registry;
 public class GiveCommand {
     private static final MinecraftClient minecraft = MinecraftClient.getInstance();
 
-    public static boolean guiSummoned = false;
+    public static int guiSummoned = 0;
 
     public static void register(CommandDispatcher<CottonClientCommandSource> dispatcher) {
         dispatcher.register(ArgumentBuilders.literal("dfgive")
@@ -32,12 +32,21 @@ public class GiveCommand {
             .executes(ctx -> execute(ctx, false)))
         .then(ArgumentBuilders.literal("get")
             .executes(ctx -> executeGet(ctx)))
+        .then(ArgumentBuilders.literal("codetemplate")
+            .executes(ctx -> {
+                if (!minecraft.player.isCreative()) {
+                    MessageUtils.errorMessage("You need to be in build mode or dev mode to do this!");
+                    return 1;
+                }
+                guiSummoned = 2;
+                return 1;
+            }))
         .executes(ctx -> {
             if (!minecraft.player.isCreative()) {
                 MessageUtils.errorMessage("You need to be in build mode or dev mode to do this!");
                 return 1;
             }
-            guiSummoned = true;
+            guiSummoned = 1;
             return 1;
         }));
 
@@ -49,12 +58,21 @@ public class GiveCommand {
             .executes(ctx -> execute(ctx, false)))
         .then(ArgumentBuilders.literal("get")
             .executes(ctx -> executeGet(ctx)))
+        .then(ArgumentBuilders.literal("codetemplate")
+            .executes(ctx -> {
+                if (!minecraft.player.isCreative()) {
+                    MessageUtils.errorMessage("You need to be in build mode or dev mode to do this!");
+                    return 1;
+                }
+                guiSummoned = 2;
+                return 1;
+            }))
         .executes(ctx -> {
             if (!minecraft.player.isCreative()) {
                 MessageUtils.errorMessage("You need to be in build mode or dev mode to do this!");
                 return 1;
             }
-            guiSummoned = true;
+            guiSummoned = 1;
             return 1;
         }));
     }

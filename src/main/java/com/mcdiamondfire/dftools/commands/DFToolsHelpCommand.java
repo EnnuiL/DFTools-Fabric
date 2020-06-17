@@ -35,8 +35,9 @@ public class DFToolsHelpCommand {
             "§6> §e/canplace",
             "§6> §e/custommodeldata",
             "§6> §e/dfgive   §7Works like /give, has a menu when typed alone.",
+            "§6> §e/dfg get  §7Gives the held item's ID ready for /dfgive.",
+            "§6> §e/dfg codetemplate §7Opens a menu for code templates.",
             "§6> §e/editname",
-            "§6> §e/itemdata §7Displays the NBT for the currently held item.",
             "§6> §e/rename  §7Similar to the default /rename command.",
             "§6> §e/unbreakable §7Similar to the default /unbreakable command.",
 			""
