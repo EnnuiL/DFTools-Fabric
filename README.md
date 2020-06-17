@@ -2,11 +2,14 @@
 
 # DiamondFire Tools: Fabric Edition
 
-This is a port of the DiamondFire Tools mod, which was originally made for Forge 1.12.2, this port aims to rewrite all the features so they can take advantage of new systems, such as the Brigadier system. Currently, the focus is to provide new GUIs in general, like one for /give and one that replaces the game menu.
+A new take of the original [DFTools](https://github.com/KSashaDF/DFTools) mod by K_Sasha, this mod ports some features from it while introducing new features like /dfgive! However, most of the important features from the original mod (like code templates) were reimplemented in DiamondFire itself thanks to the work of the new developers, so this mod attempts to go on a different path while still being helpful when needed. This mod is currently only available for the Fabric Loader, with [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api) being required, the current maintained version is 1.15.2.
 
 ## Download
 
-You can obtain DFTools through this repository's [GitHub Releases](https://github.com/joaoh1/DFTools-Fabric/releases), due to this mod's nature, there is no CurseForge release, indev releases are also available as [GitHub Packages](https://github.com/joaoh1/DFTools-Fabric/packages) but they are unstable and might have serious issues.
+This mod is available for download on the following services:
+
+- [GitHub Releases (recommended)](https://github.com/joaoh1/DFTools-Fabric/releases)
+- [GitHub Packages (indev releases, **use at your own risk**)](https://github.com/joaoh1/DFTools-Fabric/packages)
 
 ## License
 

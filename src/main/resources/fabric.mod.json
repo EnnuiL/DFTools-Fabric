@@ -3,7 +3,7 @@
   "id": "dftools",
   "version": "${version}",
   "name": "DiamondFire Tools",
-  "description": "The successor of DFTools, made for Fabric.",
+  "description": "A collection of utilities for usage in the DiamondFire server. Based on the original DFTools mod by K_Sasha and Timeraa.",
   "authors": [
     "joaoh1",
     "K_Sasha",
@@ -17,7 +17,7 @@
   "icon": "assets/dftools/icon.png",
   "environment": "client",
   "entrypoints": {
-    "client": ["com.mcdiamondfire.dftools.DFTools"],
+    "client": ["com.mcdiamondfire.dftools.DFToolsMod"],
     "cotton-client-commands": ["com.mcdiamondfire.dftools.commands.DFToolsCommands"]
   },
   "depends": {

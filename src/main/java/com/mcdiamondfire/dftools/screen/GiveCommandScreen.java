@@ -2,9 +2,9 @@ package com.mcdiamondfire.dftools.screen;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;
-import spinnery.client.BaseScreen;
 import spinnery.widget.WInterface;
 import spinnery.widget.WPanel;
+import spinnery.client.screen.BaseScreen;
 import spinnery.widget.WButton;
 import spinnery.widget.WTextArea;
 import spinnery.widget.api.Position;
@@ -33,6 +33,7 @@ public class GiveCommandScreen extends BaseScreen {
 		mainPanel.setLabel("Give Item");
 
 		setIsPauseScreen(true);
+		mainInterface.setClientside(true);
 		mainInterface.setBlurred(true);
 
 		WTextArea textBox = new WTextArea().setLineWrap(true);
@@ -45,7 +46,7 @@ public class GiveCommandScreen extends BaseScreen {
 		giveButton.getSize().setWidth(26).setHeight(14);
 		giveButton.setLabel(new LiteralText("Give"));
 
-		giveButton.setOnMouseClicked((WButton w, int mouseX, int mouseY, int mouseButton) -> {
+		giveButton.setOnMouseClicked((widget, mouseX, mouseY, mouseButton) -> {
 			minecraft.player.sendChatMessage("/dfg " + textBox.getText());
 		});
 

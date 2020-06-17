@@ -7,7 +7,7 @@ import com.mcdiamondfire.dftools.screen.GiveCommandScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.event.client.ClientTickCallback;
 import net.minecraft.client.MinecraftClient;
-public class DFTools implements ClientModInitializer {
+public class DFToolsMod implements ClientModInitializer {
 	private static final MinecraftClient minecraft = MinecraftClient.getInstance();
 
 	@Override
