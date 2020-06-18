@@ -42,15 +42,16 @@ public class EditNameCommand {
 
         //Creates the click and hover events for the message.
 		Style messageStyle = new Style();
-		messageStyle.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/rename " + itemName));
+		messageStyle.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/dftcopy text /rename " + itemName));
 		messageStyle.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new LiteralText(itemName).formatted(Formatting.BLUE)));
 		
 		//Creates the actual message text component.
-		Text messageText = new LiteralText("§b❱§3❱ §bClick here to write the rename command to your chat bar.");
+		Text messageText = new LiteralText("/rename " + itemName);
 		messageText.setStyle(messageStyle);
 		
-		//Sends the message.
-		minecraft.player.sendMessage(messageText);
+        //Sends the message.
+        MessageUtils.infoMessage("Click below to copy the rename command to your clipboard.");
+        minecraft.player.sendMessage(messageText);
         return 1;
     }
 }

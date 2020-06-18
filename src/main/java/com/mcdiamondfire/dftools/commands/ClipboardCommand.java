@@ -36,7 +36,7 @@ public class ClipboardCommand {
         minecraft.keyboard.setClipboard(textToCopy);
 
         //Sends the message.
-        MessageUtils.infoMessage("Text successfully copied to clipboard.");
+        MessageUtils.actionMessage("Text successfully copied to clipboard.");
         return 1;
     }
 }
