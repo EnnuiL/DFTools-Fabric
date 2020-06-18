@@ -39,29 +39,29 @@ public class CodeTemplateScreen extends BaseScreen {
         mainInterface.setBlurred(true);
         
         WStaticText authorLabel = new WStaticText();
-        authorLabel.getPosition().setAnchor(mainPanel).set(6, 26, 0);
-        authorLabel.setText("Author:").setTheme(new Identifier("dftools", "dftools"));
+        authorLabel.getPosition().setAnchor(mainPanel).set(8, 27, 0);
+        authorLabel.setText("Author:").overrideStyle("shadow", false).overrideStyle("text", 0xff3f3f3f);
 
 		WTextField authorTextField = new WTextField();
-		authorTextField.getPosition().setAnchor(mainPanel).set(82, 22, 0);
-        authorTextField.getSize().setWidth(162).setHeight(16);
+		authorTextField.getPosition().setAnchor(mainPanel).set(84, 22, 0);
+        authorTextField.getSize().setWidth(160).setHeight(18);
         authorTextField.setText(minecraft.player.getName().asFormattedString());
         
         WStaticText nameLabel = new WStaticText();
-        nameLabel.getPosition().setAnchor(mainPanel).set(6, 46, 0);
-        nameLabel.setText("Template Name:").setTheme(new Identifier("dftools", "dftools"));
+        nameLabel.getPosition().setAnchor(mainPanel).set(8, 47, 0);
+        nameLabel.setText("Template Name:").overrideStyle("shadow", false).overrideStyle("text", 0xff3f3f3f);
         
         WTextField nameTextField = new WTextField();
-		nameTextField.getPosition().setAnchor(mainPanel).set(82, 42, 0);
-		nameTextField.getSize().setWidth(162).setHeight(16);
+		nameTextField.getPosition().setAnchor(mainPanel).set(84, 42, 0);
+		nameTextField.getSize().setWidth(160).setHeight(18);
         
         WStaticText codeLabel = new WStaticText();
-        codeLabel.getPosition().setAnchor(mainPanel).set(6, 66, 0);
-        codeLabel.setText("Code:").setTheme(new Identifier("dftools", "dftools"));
+        codeLabel.getPosition().setAnchor(mainPanel).set(8, 67, 0);
+        codeLabel.setText("Code:").overrideStyle("shadow", false).overrideStyle("text", 0xff3f3f3f);
 
         WTextField codeTextField = new WTextField();
-		codeTextField.getPosition().setAnchor(mainPanel).set(82, 62, 0);
-		codeTextField.getSize().setWidth(162).setHeight(16);
+		codeTextField.getPosition().setAnchor(mainPanel).set(84, 62, 0);
+		codeTextField.getSize().setWidth(160).setHeight(18);
 
 		WButton giveButton = new WButton();
 		giveButton.getPosition().setAnchor(mainPanel).set(220, 82, 0);

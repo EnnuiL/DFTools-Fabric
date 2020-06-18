@@ -42,7 +42,7 @@ public class EditNameCommand {
 
         //Creates the click and hover events for the message.
 		Style messageStyle = new Style();
-		messageStyle.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/dftcopy text /rename " + itemName));
+		messageStyle.setClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, "/rename " + itemName));
 		messageStyle.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new LiteralText(itemName).formatted(Formatting.BLUE)));
 		
 		//Creates the actual message text component.

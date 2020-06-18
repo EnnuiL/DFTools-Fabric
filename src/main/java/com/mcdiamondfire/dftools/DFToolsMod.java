@@ -14,11 +14,14 @@ public class DFToolsMod implements ClientModInitializer {
 	public void onInitializeClient() {
 		ClientTickCallback.EVENT.register(e -> {
 			if (GiveCommand.guiSummoned != 0) {
+				//Summoned by /dfgive
 				if (GiveCommand.guiSummoned == 1) {
+					//This allows for holding the arrow key while in the custom GUI.
 					minecraft.keyboard.enableRepeatEvents(true);
 					minecraft.openScreen(new GiveCommandScreen());
 				}
 
+				//Summoned by /dfgive codetemplate
 				if (GiveCommand.guiSummoned == 2) {
 					minecraft.keyboard.enableRepeatEvents(true);
 					minecraft.openScreen(new CodeTemplateScreen());

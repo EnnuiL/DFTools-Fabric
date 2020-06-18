@@ -126,7 +126,7 @@ public class GiveCommand {
         
         //Creates the click and hover events for the message.
 		Style messageStyle = new Style();
-		messageStyle.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/dftcopy text " + itemId + itemTag));
+		messageStyle.setClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, itemId + itemTag));
 		messageStyle.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new LiteralText("Click here to copy the /give-formatted\nitem data to your clipboard.").formatted(Formatting.BLUE)));
 		
 		//Creates the actual message text component.

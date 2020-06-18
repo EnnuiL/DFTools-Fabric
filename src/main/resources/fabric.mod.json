@@ -21,8 +21,8 @@
     "cotton-client-commands": ["com.mcdiamondfire.dftools.commands.DFToolsCommands"]
   },
   "depends": {
-    "cotton-client-commands": ">=0.4.2",
-    "minecraft": "1.15.x",
+    "cotton-client-commands": ">=1.0.0",
+    "fabric": "*",
     "fabricloader": ">=0.7.0"
   },
   "custom": {
