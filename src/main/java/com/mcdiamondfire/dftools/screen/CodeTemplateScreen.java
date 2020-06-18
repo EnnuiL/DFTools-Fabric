@@ -2,7 +2,6 @@ package com.mcdiamondfire.dftools.screen;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;
-import net.minecraft.util.Identifier;
 import spinnery.widget.WInterface;
 import spinnery.widget.WPanel;
 import spinnery.widget.WStaticText;
