@@ -47,7 +47,11 @@ public class GiveCommandScreen extends BaseScreen {
 		giveButton.setLabel(new LiteralText("Give"));
 
 		giveButton.setOnMouseClicked((widget, mouseX, mouseY, mouseButton) -> {
-			minecraft.player.sendChatMessage("/dfg " + textBox.getText());
+			String dfGiveText = textBox.getText();
+			if (dfGiveText.startsWith("/give @p ")) {
+				dfGiveText = dfGiveText.substring(9);
+			}
+			minecraft.player.sendChatMessage("/dfg " + dfGiveText);
 		});
 
 		mainInterface.add(giveButton, textBox, mainPanel);
