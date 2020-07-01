@@ -35,9 +35,11 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modImplementation "io.github.cottonmc:cotton-client-commands:${project.ccc_version}"
 	modImplementation "com.github.vini2003:spinnery:${project.spinnery_version}"
+	modImplementation "me.zeroeightsix:fiber:${project.fiber_version}"
 
 	include "io.github.cottonmc:cotton-client-commands:${project.ccc_version}"
 	include "com.github.vini2003:spinnery:${project.spinnery_version}"
+	include "me.zeroeightsix:fiber:${project.fiber_version}"
 }
 
 processResources {
